@@ -1,0 +1,7 @@
+[build]
+  command = "npm run build"
+  publish = ".next"     # Netlify plugin se encarga del resto
+  node_version = "20"
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"

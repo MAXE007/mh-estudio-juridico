@@ -1,0 +1,484 @@
+/* ====== RESET & BASE ====== */
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  color: #1E1E1E;
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+img { max-width: 100%; display: block; }
+
+/* ====== PALETA (podés ajustar) ====== */
+:root{
+  --bg:      #F5F3EE; /* crema */
+  --ink:     #1E1E1E; /* texto */
+  --sand:    #D9CBBE; /* bordes */
+  --sage:    #BFD6C2; /* CTA */
+  --blush:   #E7C6CF; /* acento */
+  --sky:     #B7CCE2; /* acento frío */
+  --white:   #FFFFFF;
+  --muted:   #686868;
+  --gold:    #909753;
+}
+
+/* ====== HELPERS ====== */
+.container { max-width: 1120px; margin: 0 auto; padding: 0 16px; }
+.hidden { display: none !important; }
+
+.section { padding: 100px; }
+.section-lg { padding: 64px; }
+
+.h1 { font-size: 32px; line-height: 1.2; font-weight: 800; letter-spacing: -0.02em; }
+.h2 { font-size: 30px; line-height: 1.25; font-weight: 700; letter-spacing: -0.01em; }
+
+.p-lg { font-size: 18px; color: var(--muted); }
+
+.mt-2 { margin-top: 8px; }
+.mt-3 { margin-top: 12px; }
+.mt-4 { margin-top: 16px; }
+.mt-6 { margin-top: 24px; }
+.mt-8 { margin-top: 32px; }
+
+/* Grid responsive */
+.grid { display: grid; gap: 16px; }
+@media (min-width: 768px){
+  .grid-2-md { grid-template-columns: 1fr 1fr; }
+  .grid-3-md { grid-template-columns: repeat(3, 1fr); }
+}
+@media (min-width: 1024px){
+  .grid-4-lg { grid-template-columns: repeat(4, 1fr); }
+}
+
+/* Cards */
+.card {
+  background: var(--white);
+  border: 2px solid var(--gold);
+  border-radius: 18px;
+  padding: 20px;
+  box-shadow: 0 4px 16px rgba(0,0,0,.04);
+  transition: transform .15s ease, box-shadow .15s ease, outline .15s ease;
+  outline: 0 solid transparent;
+  font-size: 20px;
+}
+.card:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px rgba(0,0,0,.08);
+}
+
+/* Botones */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  padding: 12px 18px; border-radius: 14px; text-decoration: none;
+  font-weight: 600; border: 1px solid transparent; transition: box-shadow .15s ease, opacity .15s ease, background .15s ease, color .15s ease, transform .05s ease;
+  cursor: pointer;
+}
+.btn:active{ transform: scale(.98); }
+.btn-cta { background: var(--sage); color: var(--ink); border-color: var(--sand); }
+.btn-cta:hover{ box-shadow: 0 8px 20px rgba(0,0,0,.08); }
+.btn-outline { background: transparent; color: var(--ink); border-color: var(--sand); }
+.btn-outline:hover { background: var(--white); }
+
+/* Listado puntitos suaves */
+.bullets { color: #7a7a7a; font-size: 14px; display: grid; grid-template-columns: 1fr 1fr; gap: 6px 12px; max-width: 420px; }
+
+/* ====== HEADER & NAV ======  barra*/ 
+.header{
+  position: sticky; top: 0; z-index: 30;
+  background: #909753;
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(0,0,0,.15);
+}
+
+/* tres columnas: [izq] [centro] [der] */
+.header-row{
+  display: grid;
+  grid-template-columns: 1fr auto 1fr; /* ¡ojo!: el centro es auto */
+  align-items: center;
+  padding: 10px 20px; /* margen interno del header */
+  width: 100%;
+  border: 1px solid var(--muted);
+}
+
+/* marca a la IZQUIERDA */
+.brand{ justify-self: start; text-decoration: none; }
+.brand-badge{
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 8px 12px; border-radius: 12px;
+  color: #fff;
+  font-size: large;
+  text-shadow: 0 0 2px var(--ink);
+}
+
+/* menú CENTRADO (respecto al viewport, no al container) */
+.nav{
+  justify-self: center;
+  display: none;                 /* visible en desktop */
+  gap: 12px;
+  font: 600 14px/1 "Inter", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+}
+.nav a{
+  color: #fff; text-decoration: none;
+  padding: 8px 12px; border-radius: 12px;
+  transition: background .15s ease, color .15s ease, box-shadow .15s ease;
+}
+.nav a:hover{ 
+  background: rgba(39, 15, 15, 0.18); 
+  border: 1px solid var(--muted);
+  
+}
+.nav a.active{
+  background: #fff; color: #1e1e1e;
+  box-shadow: 0 2px 8px rgba(0,0,0,.08);
+  border: 2px solid var(--muted);
+}
+
+@media (min-width: 768px){ .nav { display: inline-flex; } }
+
+/* Burger */
+.burger {
+  height: 40px; width: 40px; border-radius: 10px; border: 0; background: transparent; cursor: pointer;
+}
+@media (min-width: 768px){
+  .burger { display: none; }
+}
+
+.burger:hover { background: #ffffff; }
+.burger-ico { position: relative; height: 20px; width: 20px; display: inline-block; }
+.burger-ico span {
+  position: absolute; left: 0; right: 0; height: 2px; background: var(--ink); transition: transform .2s ease, opacity .2s ease, top .2s ease;
+}
+.b1{ top: 2px; } .b2{ top: 9px; } .b3{ top: 16px; }
+.menu-open .b1{ top: 9px; transform: rotate(45deg); }
+.menu-open .b2{ opacity: 0; }
+.menu-open .b3{ top: 9px; transform: rotate(-45deg); }
+
+/* Menú móvil fullscreen */
+.mobile-menu {
+  position: fixed; inset: 0; background: #fff; z-index: 60; display: none;
+}
+.mobile-menu.open { display: block; }
+.mobile-top { position: sticky; top: 0; background: #fff; border-bottom: 1px solid var(--sand); padding: 10px 16px; display:flex; align-items:center; justify-content:space-between; }
+.mobile-links { padding: 12px 16px 24px; display:flex; flex-direction:column; gap: 10px; }
+.mobile-links a {
+  padding: 12px 14px; border: 1px solid var(--sand); border-radius: 14px; text-decoration: none; color: var(--ink);
+}
+.mobile-links a:hover{ background: var(--bg); }
+@media (min-width: 768px){ .mobile-menu{ display: none !important; } }
+
+/* ====== HERO ====== */
+/* ===== HERO en 3 capas: fondo (0) + overlay (1) + contenido (2) ===== */
+.hero{
+  position: relative;
+  overflow: clip;
+  text-align: center;
+  padding: 150px;
+}
+
+/* Capa 0: imagen de fondo con efecto “desenfocado y atenuado” */
+.hero-bg{
+  position: absolute;
+  inset: 0;
+  background-size: 73%;
+  background-position: center; /* se puede sobreescribir inline */
+  z-index: 0;
+
+
+  /* clave para que se vea “atrás” */
+  filter: blur(4px) brightness(0.75) saturate(0.8);
+  opacity: .75;
+}
+
+/* Capa 1: overlay pastel encima del fondo (suaviza aún más) */
+.hero::before{
+  content: "";
+  position: absolute; inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(189, 194, 162, 0) 0%,
+    rgba(164, 175, 136, 0.8) 96%,
+    var(--bg) 100%
+  );
+  z-index: 1;
+}
+
+/* Capa 2: contenido  */
+.hero-inner{ position: relative; z-index: 2; }
+
+/* Títulos (podés bajar un poco los tamaños si querés) */
+.hero-title{
+  margin: 40px;
+  font-size: 150px;
+  line-height: 1.05;
+  font-weight: 800;
+  letter-spacing: -.02em;
+  color: #909753;
+  text-shadow: 5px 2px 0 var(--white);
+
+}
+.hero-title2{
+  margin: 4px 0 0;
+  font-size: 70px;
+  font-weight: 700;
+  color: #1a1a1a;
+  text-shadow: 2px 2px 0 var(--muted);
+}
+
+.hero-row { display: grid; gap: 24px; }
+@media (min-width: 768px){ .hero-row{ grid-template-columns: 1fr 1fr; } }
+
+/* ====== AREAS / TESTIMONIOS ====== */
+.grid-areas { display: grid; gap: 16px; }
+@media (min-width: 768px){ .grid-areas{ grid-template-columns: 1fr 1fr; } }
+
+/* ====== CONTACTO ====== */
+.contact-grid { display: grid; gap: 16px; }
+@media (min-width: 768px){ .contact-grid{ grid-template-columns: 1.6fr 1fr; } }
+
+/* Form */
+.input, .select, .textarea {
+  width: 100%; border: 1px solid var(--sand); border-radius: 12px; padding: 10px 12px; background: #fff; color: var(--ink);
+  font: inherit;
+}
+.textarea { min-height: 130px; resize: vertical; }
+.error { margin-top: 6px; color: #b42318; font-size: 13px; }
+
+/* ====== FOOTER & FLOTANTE WA ====== */
+.footer { border-top: 1px solid var(--muted); background: #909753; color: var(--white); }
+.footer-row { display:flex; flex-direction:column; gap:12px; align-items:center; justify-content:space-between; padding: 16px 0; }
+@media (min-width: 768px){ .footer-row{ flex-direction:row; } }
+
+/* Botón flotante WhatsApp – compat iOS (env + constant), z-top y safe area */
+.float-wa {
+  position: fixed;
+
+  /* Fallback básico */
+  right: 16px;
+  bottom: 16px;
+
+  /* iOS viejo (constant) y nuevo (env). El último que entiende gana. */
+  right: calc(16px + constant(safe-area-inset-right));
+  right: calc(16px + env(safe-area-inset-right));
+  bottom: calc(16px + constant(safe-area-inset-bottom));
+  bottom: calc(16px + env(safe-area-inset-bottom));
+
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #25D366; /* verde oficial */
+  color: #fff;         /* ícono blanco */
+  display: grid;
+  place-items: center;
+  border: 0;
+  text-decoration: none;
+
+  /* ¡encima de todo! (algunos iOS requieren exagerar) */
+  z-index: 2147483647;
+  /* fuerza a componer en la capa superior (trucos WebKit) */
+  will-change: transform;
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+
+  box-shadow: 0 10px 20px rgba(0,0,0,.22);
+  transition: transform .05s ease, box-shadow .15s ease, filter .2s ease;
+}
+.float-wa:hover { box-shadow: 0 16px 30px rgba(0,0,0,.28); filter: brightness(1.03); }
+.float-wa:active { transform: translateZ(0) scale(.97); }
+
+@media (min-width: 768px){
+  .float-wa {
+    bottom: calc(24px + env(safe-area-inset-bottom));
+    bottom: calc(24px + constant(safe-area-inset-bottom));
+  }
+}
+
+/* Tamaño menor en pantallas muy chicas */
+@media (max-width: 360px){
+  .float-wa { width: 50px; height: 50px; }
+}
+
+/* tamaño un poquito menor en pantallas muy chicas */
+@media (max-width: 360px){
+  .float-wa { height: 50px; width: 50px; }
+}
+
+/* fila de badges (ubicación, whatsapp, profesional, etc.) */
+.badges {
+  margin-top: 18px;
+  display: flex; flex-wrap: wrap;
+  gap: 10px 18px; justify-content: center;
+  color: #555; font-weight: 600;
+}
+.badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 8px 12px; border-radius: 12px;
+  background: rgba(255,255,255,.75);
+  border: 1px solid var(--in);
+}
+
+/* CTA grande centrado */
+.btn-hero {
+  margin-top: 24px;
+  padding: 14px 22px;
+  font-size: 16px;
+  border-radius: 14px;
+}
+
+/* ====== MAPA más grande y bonito ====== */
+.map-card { padding: 22px; }
+.map-embed {
+  margin-top: 14px;
+  width: 100%;
+  height: 320px;              /* más alto que antes */
+  border: 1px solid var(--sand);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 8px 22px rgba(0,0,0,.06);
+}
+@media (min-width: 1024px){
+  .map-embed { height: 380px; }
+}
+
+
+.about-grid{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  padding: 50px;
+  /* usamos la variable --about definida inline */
+  background: var(--about) right center / 700px no-repeat;
+  min-height: 600px;
+  box-sizing: border-box;
+  background-size: contain;           /* foto a la DERECHA */
+  background-size: 700px ;
+  min-height: 500px;    
+  border-radius: 20px;
+  border: 2px solid var(--gold);
+}
+/* el bloque de texto ocupa la 1ª columna (izquierda) */
+.about-text{
+  display: flex;
+  grid-column: 1 / 2;
+  /* opcional: darle “tarjeta” suave para contraste */
+  text-align: left;
+  padding: 28px 24px;
+  flex-direction: column;
+}
+.about-text p{
+  line-height: 1.65;
+  font-size: 20px;
+  color: #444;
+}
+.h2-about{
+  font-size: 35px;
+}
+
+#metodo.section{padding-top: 120px; padding-bottom: 170px; }
+
+/* ====== NOSOTROS (mobile): primero la foto, luego el texto ====== */
+@media (max-width: 900px){
+  .about-grid{
+    /* quitamos el background del contenedor */
+    background: none;
+    grid-template-columns: 1fr;
+    padding: 0 16px 24px;
+    min-height: unset;
+    position: relative;
+  }
+
+  /* bloque de imagen arriba */
+  .about-grid::before{
+    content: "";
+    display: block;
+    width: 100%;
+    height: min(78vw, 460px);  /* alto de la “cabecera” */
+    background: var(--about) center / cover no-repeat;
+    border-radius: 16px;       /* opcional para que se vea más prolija */
+    margin: 24px 0 16px;
+  }
+
+  .about-text{
+    background: #fff;          /* opcional para contraste */
+    border-radius: 14px;
+    padding: 20px 16px;
+  }
+}
+
+/* ---------- Responsive base ---------- */
+@media (max-width: 1024px){
+  .section   { padding: 88px 24px; }
+  .section-lg{ padding: 80px 24px; }
+}
+
+/* Ajustá la altura lógica del header en móvil para que el scroll a #anclas frene bien */
+@media (max-width: 768px){
+  :root{ --header-h: 64px; }
+}
+
+/* ---------- Header / Navbar en móvil ---------- */
+@media (max-width: 768px){
+  .header-row{
+    /* [logo] [espacio] [burger] */
+    grid-template-columns: auto 1fr auto;
+    padding: 8px 12px;
+    border: 0;              /* sacamos el borde de debug */
+  }
+
+  .brand{ justify-self: start; }
+  .brand-badge{
+    font-size: 14px;
+    padding: 6px 8px;
+    max-width: 75vw;        /* evita que tape el burger */
+    white-space: normal;    /* permite salto de línea */
+    line-height: 1.1;
+  }
+
+  .nav{ display: none !important; } /* oculto el menú desktop */
+  .burger{ display:block; justify-self: end; } /* a la derecha */
+}
+
+/* Opcional: pantallas MUY chicas */
+@media (max-width: 380px){
+  .brand-badge{ font-size: 13px; }
+}
+
+/* ---------- Hero en móvil (títulos y fondo) ---------- */
+@media (max-width: 768px){
+  .hero{
+    padding: 96px 16px 72px;   /* menos alto y con laterales chicos */
+    text-align: center;
+  }
+  .hero-bg{
+    background-size: cover;    /* que cubra; evita “zoom raro” */
+    background-position: center;
+    filter: blur(3px) brightness(.78) saturate(.9);
+  }
+  .hero-title{
+    margin: 8px 0;
+    font-size: clamp(40px, 12vw, 64px); /* baja enorme */
+    line-height: 1.05;
+  }
+  .hero-title2{
+    margin-top: 4px;
+    font-size: clamp(20px, 6.5vw, 32px);
+    text-shadow: 1px 1px 0 rgba(0,0,0,.25);
+  }
+  .badges{ gap: 8px; }
+  .badge { padding: 6px 10px; font-size: 14px; }
+}
+
+/* ---------- Grids y cards en móvil ---------- */
+@media (max-width: 768px){
+  /* Fuerza 1 columna para todos los grids “*-md/-lg” */
+  .grid-2-md,
+  .grid-3-md,
+  .grid-4-lg{
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  /* Cards con padding más amable */
+  .card{ padding: 20px; }
+}
