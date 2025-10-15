@@ -1,6 +1,6 @@
 'use client';
 import heroBg from './assets/lawer.jpeg';
-import aboutImg from './assets/law.jpeg';
+import aboutImg from './assets/description.jpeg';
 import { useEffect, useState } from 'react';
 import ContactForm from '../components/ContactForm'; // ruta relativa
 
@@ -154,7 +154,7 @@ export default function Home() {
               <svg width="16" height="16" viewBox="0 0 24 24" fill="#555">
                 <path d="M12 12a5 5 0 1 0-5-5 5 5 0 0 0 5 5Zm0 2c-5 0-9 3-9 6v2h18v-2c0-3-4-6-9-6Z"/>
               </svg>
-              Dra./Dr. a designar
+              atención de 8hs a 16hs , lun a vie
             </div>
           </div>
 
@@ -174,7 +174,7 @@ export default function Home() {
 
           <div className="about-text">
             <p className="mt-2">
-              En MH & ASOCIADOS brindamos asesoramiento legal integral con un enfoque humano, claro y cercano. Escuchamos cada caso en detalle, diseñamos una estrategia a medida y acompañamos a nuestros clientes durante todo el proceso con comunicación transparente y plazos realistas. Nuestro equipo combina experiencia en Derecho Laboral, Civil, Comercial y de Defensa del Consumidor, sumando actualización permanente en normativa y jurisprudencia para ofrecer soluciones prácticas y sostenibles. Creemos en la prevención de conflictos, la negociación eficaz y, cuando corresponde, una litigación firme y técnica, siempre priorizando los intereses de quienes confían en nosotros.
+              En MH & ASOCIADOS brindamos asesoramiento legal integral con un enfoque humano, claro y cercano. Escuchamos cada caso en detalle, diseñamos una estrategia a medida y acompañamos a nuestros clientes durante todo el proceso con comunicación transparente y plazos realistas. Nuestro equipo combina experiencia en Derecho Laboral, Civil, y Comercial, sumando actualización permanente en normativa y jurisprudencia para ofrecer soluciones prácticas y sostenibles. Creemos en la prevención de conflictos, la negociación eficaz y, cuando corresponde, una litigación firme y técnica, siempre priorizando los intereses de quienes confían en nosotros.
             </p>
           </div>
         </div>
@@ -197,7 +197,7 @@ export default function Home() {
       {/* MÉTODO */}
       <section id="metodo" className="section">
         <div className="work">
-          <h2 className="h2">Cómo trabajamos</h2>
+          <h2 className="h2-sub">Cómo trabajamos</h2>
           <div className="mt-6 grid grid-3-md">
             {[
               { t: 'Análisis personalizado', d: 'Estudio profundo del caso y estrategia efectiva.' },
@@ -216,7 +216,7 @@ export default function Home() {
       {/* ÁREAS */}
       <section id="servicios" className="section">
         <div className="area">
-          <h2 className="h2">Áreas de práctica</h2>
+          <h2 className="h2-sub">Áreas de práctica</h2>
           <p className="mt-2" style={{color:'#606060'}}>
             Atendemos tu consulta de forma integral y en lenguaje claro. Si tu caso no encaja exactamente aquí, escribinos y te orientamos.
           </p>
@@ -225,7 +225,6 @@ export default function Home() {
               { t: 'Derecho Laboral', d: 'Despidos, diferencias salariales, trabajo no registrado, acoso laboral.' },
               { t: 'Derecho Civil', d: 'Divorcios, sucesiones, contratos, daños y perjuicios, alquileres.' },
               { t: 'Derecho Comercial', d: 'Tarjetas, créditos, cheques, pagarés, contratos comerciales.' },
-              { t: 'Consumidor', d: 'Defensa del consumidor, cláusulas abusivas, fraudes.' },
             ].map((x, i) => (
               <article key={i} className="card" style={{padding:24}}>
                 <h3>{x.t}</h3>
@@ -239,7 +238,7 @@ export default function Home() {
       {/* TESTIMONIOS */}
       <section className="section">
         <div className="people">
-          <h2 className="h2">Testimonios</h2>
+          <h2 className="h2-sub">Testimonios</h2>
           <div className="mt-6 grid grid-2-md">
             {[
               { q: '“Solución rápida y favorable, excelente trato humano.”', a: 'Eduardo R. M.' },
@@ -259,7 +258,7 @@ export default function Home() {
       {/* CONTACTO */}
       <section id="contacto" className="section-lg">
         <div className="contact">
-          <h2 className="h2">Contacto</h2>
+          <h2 className="h2-sub">Contacto</h2>
           <p className="mt-2" style={{color:'#606060'}}>Dejanos tu consulta y te respondemos a la brevedad.</p>
 
           <div className="mt-8 contact-grid">
@@ -273,7 +272,7 @@ export default function Home() {
                   <li><strong>Tel:</strong> +54 9 260 420-5682</li>
                   <li><strong>Email:</strong> mhestudiojuridicomza@gmail.com</li>
                   <li><strong>Dirección:</strong> Lugones 211, San Rafael, Mendoza, Argentina.</li>
-                  <li><strong>Horario:</strong> Lun a Vie 9–18 h</li>
+                  <li><strong>Horario:</strong> Lun a Vie 8–16 h</li>
                 </ul>
 
                 <a href={WAPP_URL} target="_blank" rel="noopener" className="btn btn-cta mt-3">
@@ -310,6 +309,95 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* PREVIEW – PREGUNTAS FRECUENTES */}
+      <section id="faq" className="section faq-preview">
+        <div className="container">
+          <h2 className="h2-sub">Preguntas frecuentes</h2>
+
+          {/* Toggle sin JS para expandir/contraer */}
+          <input id="faqExpand" type="checkbox" className="faq-toggle" />
+
+          {/* Wrapper con “clamp” + fade que se quita al expandir */}
+          <div className="faq-wrap">
+            <div className="faq-grid">
+              {/* Grupo 1 */}
+              <details className="faq-item card">
+                <summary>¿La primera consulta tiene costo?</summary>
+                <p className="mt-2">Ofrecemos una primera orientación sin compromiso por WhatsApp. Si el caso requiere análisis documental o reunión, te informamos el costo antes de avanzar.</p>
+              </details>
+              <details className="faq-item card">
+                <summary>¿Cómo pactan los honorarios?</summary>
+                <p className="mt-2">Según normativa local, complejidad y etapas. Siempre por escrito y con total transparencia.</p>
+              </details>
+              <details className="faq-item card">
+                <summary>¿Puedo pagar en cuotas?</summary>
+                <p className="mt-2">En muchos casos sí. Definimos un plan acorde a las etapas del proceso.</p>
+              </details>
+              <details className="faq-item card">
+                <summary>¿Emiten factura?</summary>
+                <p className="mt-2">Sí, emitimos la documentación correspondiente a cada servicio.</p>
+              </details>
+
+              {/* Grupo 2 */}
+              <details className="faq-item card">
+                <summary>¿Atienden casos de todo el país?</summary>
+                <p className="mt-2">Atendemos consultas remotas y priorizamos causas de la región. Si tu caso es de otra jurisdicción, te orientamos o derivamos.</p>
+              </details>
+              <details className="faq-item card">
+                <summary>¿Trabajan de forma online?</summary>
+                <p className="mt-2">Sí: videollamadas, firma digital y envío seguro de documentación.</p>
+              </details>
+              <details className="faq-item card">
+                <summary>¿Cuánto tarda mi trámite/jucio?</summary>
+                <p className="mt-2">Depende del tipo de asunto y del juzgado. Te damos una estimación realista al evaluar el caso.</p>
+              </details>
+              <details className="faq-item card">
+                <summary>¿Puedo seguir el avance del caso?</summary>
+                <p className="mt-2">Sí. Mantenemos un canal de actualización periódica por el medio que prefieras.</p>
+              </details>
+
+              {/* Grupo 3 */}
+              <details className="faq-item card">
+                <summary>¿Qué documentación necesito?</summary>
+                <p className="mt-2">DNI y todo soporte de tu situación (contratos, recibos, mails, notificaciones). Si no lo tenés completo, te indicamos cómo conseguirlo.</p>
+              </details>
+              <details className="faq-item card">
+                <summary>¿Qué pasa si me despiden?</summary>
+                <p className="mt-2">No firmes nada sin revisar. Escribinos y evaluamos indemnizaciones y pasos inmediatos.</p>
+              </details>
+              <details className="faq-item card">
+                <summary>¿Hacen divorcios y sucesiones?</summary>
+                <p className="mt-2">Sí. Te explicamos opciones, plazos y costos de forma clara antes de iniciar.</p>
+              </details>
+              <details className="faq-item card">
+                <summary>¿Defienden al consumidor?</summary>
+                <p className="mt-2">Sí: fraudes, cláusulas abusivas, tarjetas y bancos. Evaluamos viabilidad y estrategia.</p>
+              </details>
+
+              {/* Más ejemplos para ver volumen */}
+              <details className="faq-item card">
+                <summary>¿Pueden revisar un contrato antes de firmar?</summary>
+                <p className="mt-2">Claro. Señalamos riesgos y proponemos ajustes para protegerte.</p>
+              </details>
+              <details className="faq-item card">
+                <summary>¿Qué es una carta documento y cuándo conviene?</summary>
+                <p className="mt-2">Es una intimación formal. La usamos para dejar constancia y ordenar una negociación.</p>
+              </details>
+              <details className="faq-item card">
+                <summary>¿Cómo agendo una reunión?</summary>
+                <p className="mt-2">Escribinos por WhatsApp o completá el formulario y coordinamos horario.</p>
+              </details>
+            </div>
+          </div>
+
+          {/* Botón expandir (se oculta al abrir) */}
+          <label htmlFor="faqExpand" className="faq-more btn btn-outline mt-3">
+            Ver todas las preguntas
+          </label>
+        </div>
+      </section>
+
 
       {/* FOOTER */}
       <footer className="footer">

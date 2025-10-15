@@ -35,7 +35,7 @@ export default function ContactForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="card" style={{ padding: 20 }}>
+    <form onSubmit={handleSubmit(onSubmit)} className="card" style={{ padding: 25 }}>
       <div className="form-row">
         <input className="input" placeholder="Nombre y apellido" aria-label="Nombre y apellido" {...register('nombre')} />
         {errors.nombre && <p className="error">{errors.nombre.message}</p>}
@@ -53,7 +53,6 @@ export default function ContactForm() {
           <option>Derecho Laboral</option>
           <option>Derecho Civil</option>
           <option>Derecho Comercial</option>
-          <option>Consumidor</option>
           <option>Otro</option>
         </select>
       </div>

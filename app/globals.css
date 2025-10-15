@@ -32,7 +32,11 @@ img { max-width: 100%; display: block; }
 .section-lg { padding: 64px; }
 
 .h1 { font-size: 32px; line-height: 1.2; font-weight: 800; letter-spacing: -0.02em; }
-.h2 { font-size: 30px; line-height: 1.25; font-weight: 700; letter-spacing: -0.01em; }
+.h2-sub {
+  text-align: center;
+  font-size: 35px;
+}
+
 
 .p-lg { font-size: 18px; color: var(--muted); }
 
@@ -72,12 +76,9 @@ img { max-width: 100%; display: block; }
 .btn {
   display: inline-flex; align-items: center; justify-content: center;
   padding: 12px 18px; border-radius: 14px; text-decoration: none;
-  font-weight: 600; border: 1px solid transparent; transition: box-shadow .15s ease, opacity .15s ease, background .15s ease, color .15s ease, transform .05s ease;
+  font-weight: 600;
   cursor: pointer;
 }
-.btn:active{ transform: scale(.98); }
-.btn-cta { background: var(--sage); color: var(--ink); border-color: var(--sand); }
-.btn-cta:hover{ box-shadow: 0 8px 20px rgba(0,0,0,.08); }
 .btn-outline { background: transparent; color: var(--ink); border-color: var(--sand); }
 .btn-outline:hover { background: var(--white); }
 
@@ -235,7 +236,7 @@ img { max-width: 100%; display: block; }
 
 /* ====== CONTACTO ====== */
 .contact-grid { display: grid; gap: 16px; }
-@media (min-width: 768px){ .contact-grid{ grid-template-columns: 1.6fr 1fr; } }
+@media (min-width: 768px){ .contact-grid{ grid-template-columns: 1fr 1fr; } }
 
 /* Form */
 .input, .select, .textarea {
@@ -319,11 +320,22 @@ img { max-width: 100%; display: block; }
 }
 
 /* CTA grande centrado */
-.btn-hero {
+.btn-cta {
+  background: var(--sage); color: var(--ink); border-color: var(--sand);
   margin-top: 24px;
   padding: 14px 22px;
   font-size: 16px;
   border-radius: 14px;
+  border: 1px solid var(--ink);
+  transition: 0.8s;
+}
+
+
+
+@keyframes glowing {
+    0% { background-position: 0 0; }
+    50% { background-position: 400% 0; }
+    100% { background-position: 0 0; }
 }
 
 /* ====== MAPA más grande y bonito ====== */
@@ -341,7 +353,6 @@ img { max-width: 100%; display: block; }
   .map-embed { height: 380px; }
 }
 
-
 .about-grid{
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -349,9 +360,9 @@ img { max-width: 100%; display: block; }
   padding: 50px;
 
   /* usás la var --about (ya la tenés inline) y hacemos el size adaptable */
-  background: var(--about) right center / clamp(480px, 44vw, 700px) no-repeat;
+  background: var(--about) right center / clamp(480px, 30vw, 700px) no-repeat;
 
-  min-height: 600px;
+  min-height: 700px;
   box-sizing: border-box;
   border-radius: 20px;
   border: 2px solid var(--gold);
@@ -365,23 +376,29 @@ img { max-width: 100%; display: block; }
   grid-column: 1 / 2;
   /* opcional: darle “tarjeta” suave para contraste */
   text-align: left;
-  padding: 28px 24px;
   flex-direction: column;
 }
 .about-text p{
-  line-height: 1.65;
-  font-size: 20px;
+  padding: 50px;
+  text-align: justify;
+  line-height: 1.75;
+  font-size: 24px;
   color: #444;
 }
 .h2-about{
-  font-size: 35px;
+  font-size: 37px;
+  text-align: center;
 }
 
-#metodo.section{padding-top: 120px; padding-bottom: 170px; }
-
+ /* notbook */
 @media (min-width: 901px) and (max-width: 1280px){
   /* banda del color de fondo en la mitad izquierda para
      que la imagen no se “meta” debajo del texto */
+  .brand-badge{
+    font-size: 15px;
+
+  }
+  
   .about-grid::before{
     content: "";
     position: absolute;
@@ -396,13 +413,17 @@ img { max-width: 100%; display: block; }
   .about-text{
     position: relative;
     z-index: 1;
-    max-width: 60ch;                   /* mejores líneas en notebooks */
   }
 
+  .about-text p{
+    padding: 30px;
+    text-align: justify;
+    font-size: 19px;
+  }
   /* bajamos apenas el tamaño y corremos un poco hacia la derecha */
   .about-grid{
-    background-size: clamp(380px, 40vw, 560px);
-    background-position: right 12px center;
+    background-size: clamp(390px, 41vw, 660px);
+    background-position: right center;
   }
 }
 
@@ -412,9 +433,10 @@ img { max-width: 100%; display: block; }
     /* quitamos el background del contenedor */
     background: none;
     grid-template-columns: 1fr;
-    padding: 0 16px 24px;
     min-height: unset;
     position: relative;
+    padding: 0;
+    background-color: var(--white);
   }
 
   /* bloque de imagen arriba */
@@ -422,16 +444,21 @@ img { max-width: 100%; display: block; }
     content: "";
     display: block;
     width: 100%;
-    height: min(78vw, 460px);  /* alto de la “cabecera” */
+    height: min(100vw, 471px);  /* alto de la “cabecera” */
     background: var(--about) center / cover no-repeat;
     border-radius: 16px;       /* opcional para que se vea más prolija */
-    margin: 24px 0 16px;
   }
 
   .about-text{
     background: #fff;          /* opcional para contraste */
     border-radius: 14px;
     padding: 20px 16px;
+  }
+  .about-text p{
+    padding: 10px;
+    text-align: center;
+    font-size: 19px;
+
   }
 }
 
@@ -457,7 +484,7 @@ img { max-width: 100%; display: block; }
 
   .brand{ justify-self: start; }
   .brand-badge{
-    font-size: 14px;
+    font-size: 13px;
     padding: 6px 8px;
     max-width: 75vw;        /* evita que tape el burger */
     white-space: normal;    /* permite salto de línea */
@@ -510,4 +537,68 @@ img { max-width: 100%; display: block; }
 
   /* Cards con padding más amable */
   .card{ padding: 20px; }
+}
+
+
+
+/* ===== FAQ PREVIEW ===== */
+.faq-preview .faq-grid{
+  display: grid;
+  gap: 16px;
+}
+@media (min-width: 1024px){
+  .faq-preview .faq-grid{ grid-template-columns: 1fr 1fr; }
+}
+
+/* Acordeón accesible */
+.faq-item { padding: 18px 20px; border-radius: 14px; cursor: pointer; }
+.faq-item summary{
+  list-style: none;
+  font-weight: 700;
+  font-size: 18px;
+  display: flex; align-items: center; justify-content: space-between;
+  user-select: none;
+}
+.faq-item summary::-webkit-details-marker{ display: none; }
+.faq-item summary::after{
+  content: "+"; font-size: 22px; line-height: 1; margin-left: 12px; color: var(--muted);
+}
+.faq-item[open] summary::after{ content: "–"; }
+.faq-item p{ color: #575757; }
+
+/* Clamp visual (muestra una “vista previa” y luego expandís) */
+.faq-toggle{ display: none; }
+.faq-wrap{
+  position: relative;
+  max-height: 560px;           /* altura de preview */
+  overflow: hidden;
+}
+.faq-wrap::after{
+  content:"";
+  position: absolute; left:0; right:0; bottom:0;
+  height: 90px;
+  background: linear-gradient(transparent, var(--bg)); /* fade bonito */
+}
+
+/* Al expandir con el checkbox, quitamos clamp y fade */
+.faq-toggle:checked ~ .faq-wrap{ max-height: none; }
+.faq-toggle:checked ~ .faq-wrap::after{ display: none; }
+.faq-toggle:checked ~ .faq-more{ display: none; }
+
+/* ---- Mostrar solo 4 preguntas por defecto ---- */
+.faq-toggle ~ .faq-wrap .faq-item { display: block; }
+
+/* Oculta de la 5 en adelante mientras NO esté expandido */
+.faq-toggle:not(:checked) ~ .faq-wrap .faq-item:nth-child(n+5) {
+  display: none;
+}
+
+/* Ya que limitamos por cantidad, quitamos el fade cuando NO está expandido */
+.faq-toggle:not(:checked) ~ .faq-wrap::after {
+  display: none;
+}
+
+/* hace que las dos columnas se estiren a la misma altura (la del mapa) */
+.contact-grid { 
+  align-items: stretch; 
 }
