@@ -3,6 +3,11 @@ import { NextResponse } from 'next/server';
 import { Resend } from 'resend';
 import { z } from 'zod';
 
+// 👇 Asegura runtime Node (en Netlify/Next puede irse a Edge)
+export const runtime = 'nodejs';
+
+
+
 const schema = z.object({
   nombre: z.string().min(2),
   email: z.string().email(),
@@ -25,34 +30,31 @@ export async function POST(req) {
 
     const { nombre, email, telefono, area, mensaje } = parse.data;
 
-    // Si aún no configuraste Resend, devolvemos un mensaje claro:
     const apiKey = process.env.RESEND_API_KEY;
-    const to = process.env.RESEND_TO || 'mhestudiojuridicomza@gmail.com';
-    const from = process.env.RESEND_FROM || 'contacto@tudominio.com';
+    const to     = process.env.RESEND_TO  || 'mhestudiojuridicomza@gmail.com';
+
+    // 👇 Para PRUEBAS: usar onboarding@resend.dev (no requiere dominio verificado)
+    // Cuando verifiques tu dominio, cambiá por "forms@tudominio.com"
+    const from   = process.env.RESEND_FROM || 'onboarding@resend.dev';
 
     if (!apiKey) {
-      // Podés descomentar esto si querés permitir un fallback de mailto, pero por API no corresponde.
       return NextResponse.json(
-        {
-          error:
-            'Falta configurar RESEND_API_KEY en .env.local. Mensaje no enviado.',
-        },
+        { error: 'Falta configurar RESEND_API_KEY en .env / Netlify.' },
         { status: 500 }
       );
     }
 
     const resend = new Resend(apiKey);
-
     const subject = `Nueva consulta web – ${nombre}${area ? ` (${area})` : ''}`;
 
     const html = `
       <h2>Consulta desde la web</h2>
-      <p><strong>Nombre:</strong> ${nombre}</p>
-      <p><strong>Email:</strong> ${email}</p>
-      <p><strong>Teléfono:</strong> ${telefono || '-'}</p>
-      <p><strong>Área:</strong> ${area || '-'}</p>
+      <p><strong>Nombre:</strong> ${escapeHtml(nombre)}</p>
+      <p><strong>Email:</strong> ${escapeHtml(email)}</p>
+      <p><strong>Teléfono:</strong> ${escapeHtml(telefono || '-')}</p>
+      <p><strong>Área:</strong> ${escapeHtml(area || '-')}</p>
       <p><strong>Mensaje:</strong></p>
-      <p style="white-space:pre-line">${mensaje}</p>
+      <p style="white-space:pre-line">${escapeHtml(mensaje)}</p>
     `;
 
     const { error } = await resend.emails.send({
@@ -64,6 +66,8 @@ export async function POST(req) {
     });
 
     if (error) {
+      // 👇 Log server-side (lo ves en la consola local o logs de Netlify)
+      console.error('Resend error:', error);
       return NextResponse.json(
         { error: 'No se pudo enviar el email', details: error },
         { status: 502 }
@@ -72,9 +76,22 @@ export async function POST(req) {
 
     return NextResponse.json({ ok: true });
   } catch (e) {
+    console.error('API /contact error:', e);
     return NextResponse.json(
       { error: 'Error inesperado', details: String(e) },
       { status: 500 }
     );
   }
 }
+
+function escapeHtml(str = '') {
+  return str
+    .replaceAll('&','&amp;')
+    .replaceAll('<','&lt;')
+    .replaceAll('>','&gt;')
+    .replaceAll('"','&quot;')
+    .replaceAll("'",'&#039;');
+}
+
+
+console.log('RESEND_API_KEY loaded?', process.env.RESEND_API_KEY?.slice(0, 6) + '…');
