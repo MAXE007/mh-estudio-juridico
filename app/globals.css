@@ -499,7 +499,7 @@ img { max-width: 100%; display: block; }
 /* ---------- Hero en móvil (títulos y fondo) ---------- */
 @media (max-width: 768px){
   .hero{
-    padding: 96px 16px 42px;   /* menos alto y con laterales chicos */
+    padding: 90px 16px 42px;   /* menos alto y con laterales chicos */
     text-align: center;
     height: 700px;
   }
@@ -510,20 +510,19 @@ img { max-width: 100%; display: block; }
   }
   .hero-title{
     padding: 10px;
-    margin: 8px 0;
+    margin: 1px;
     font-size: clamp(40px, 12vw, 64px); /* baja enorme */
     line-height: 1.05;
   }
   .hero-title2{
     padding: 15px;
-    margin-top: 4px;
-    font-size: clamp(20px, 6.5vw, 32px);
+    font-size: 30px;
     text-shadow: 1px 1px 0 rgba(0,0,0,.25);
   }
   .badges{ 
     gap: 8px; 
     padding: 20px;
-    margin-top: 60px;
+    margin-top: 50px;
   }
   .badge { 
     font-size: 12px;
