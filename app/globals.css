@@ -182,12 +182,20 @@ img { max-width: 100%; display: block; }
 .hero-bg{
   position: absolute;
   inset: 0;
-  background-size: 73%;
-  background-position: center; /* se puede sobreescribir inline */
   z-index: 0;
-  /* clave para que se vea “atrás” */
-  filter: blur(2px) brightness(0.85) saturate(0.8);
-  opacity: .80;
+
+  /* 2 capas:
+     1) fondo liso igual al de la página (cubre todo)
+     2) la balanza, más chica y centrada */
+  background-image:
+    linear-gradient(var(--bg), var(--bg));
+    background-repeat: no-repeat, no-repeat;
+    background-position: center, center 38%;
+    background-size: 100% 100%, clamp(500px, 40vw, 800px) auto !important;
+
+  /* look suave para la foto */
+  filter: blur(10px) brightness(.85) saturate(.5);
+  opacity: .8;
 }
 
 /* Capa 1: overlay pastel encima del fondo (suaviza aún más) */
@@ -196,7 +204,7 @@ img { max-width: 100%; display: block; }
   position: absolute; inset: 0;
   background: linear-gradient(
     180deg,
-    rgba(227, 228, 222, 0) 0%,
+    rgba(253, 249, 249, 0) 0%,
     rgba(176, 187, 149, 0.5) 95%,
     var(--bg) 100%
   );
@@ -348,6 +356,9 @@ img { max-width: 100%; display: block; }
 @media (min-width: 1024px){
   .map-embed { height: 380px; }
 }
+.hero-bg{
+  
+}
 
 .about-grid{
   display: grid;
@@ -394,7 +405,10 @@ img { max-width: 100%; display: block; }
     font-size: 15px;
 
   }
-  
+  .about-grid{
+    background-size: clamp(390px, 41vw, 660px);
+    background-position: right center;
+  }
   .about-grid::before{
     content: "";
     position: absolute;
@@ -415,11 +429,6 @@ img { max-width: 100%; display: block; }
     padding: 30px;
     text-align: justify;
     font-size: 19px;
-  }
-  /* bajamos apenas el tamaño y corremos un poco hacia la derecha */
-  .about-grid{
-    background-size: clamp(390px, 41vw, 660px);
-    background-position: right center;
   }
 }
 
