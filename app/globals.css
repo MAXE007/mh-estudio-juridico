@@ -185,11 +185,9 @@ img { max-width: 100%; display: block; }
   background-size: 73%;
   background-position: center; /* se puede sobreescribir inline */
   z-index: 0;
-
-
   /* clave para que se vea “atrás” */
-  filter: blur(4px) brightness(0.75) saturate(0.8);
-  opacity: .75;
+  filter: blur(2px) brightness(0.85) saturate(0.8);
+  opacity: .80;
 }
 
 /* Capa 1: overlay pastel encima del fondo (suaviza aún más) */
@@ -198,8 +196,8 @@ img { max-width: 100%; display: block; }
   position: absolute; inset: 0;
   background: linear-gradient(
     180deg,
-    rgba(189, 194, 162, 0) 0%,
-    rgba(164, 175, 136, 0.8) 96%,
+    rgba(227, 228, 222, 0) 0%,
+    rgba(176, 187, 149, 0.5) 95%,
     var(--bg) 100%
   );
   z-index: 1;
@@ -330,8 +328,6 @@ img { max-width: 100%; display: block; }
   transition: 0.8s;
 }
 
-
-
 @keyframes glowing {
     0% { background-position: 0 0; }
     50% { background-position: 400% 0; }
@@ -360,7 +356,7 @@ img { max-width: 100%; display: block; }
   padding: 50px;
 
   /* usás la var --about (ya la tenés inline) y hacemos el size adaptable */
-  background: var(--about) right center / clamp(480px, 30vw, 700px) no-repeat;
+  background: var(--about) right center / clamp(480px, 30vw, 550px) no-repeat;
 
   min-height: 700px;
   box-sizing: border-box;
@@ -444,7 +440,7 @@ img { max-width: 100%; display: block; }
     content: "";
     display: block;
     width: 100%;
-    height: min(100vw, 471px);  /* alto de la “cabecera” */
+    height: min(110vw, 471px);  /* alto de la “cabecera” */
     background: var(--about) center / cover no-repeat;
     border-radius: 16px;       /* opcional para que se vea más prolija */
   }
@@ -503,26 +499,35 @@ img { max-width: 100%; display: block; }
 /* ---------- Hero en móvil (títulos y fondo) ---------- */
 @media (max-width: 768px){
   .hero{
-    padding: 96px 16px 72px;   /* menos alto y con laterales chicos */
+    padding: 96px 16px 42px;   /* menos alto y con laterales chicos */
     text-align: center;
+    height: 700px;
   }
   .hero-bg{
     background-size: cover;    /* que cubra; evita “zoom raro” */
     background-position: center;
-    filter: blur(3px) brightness(.78) saturate(.9);
+    filter: blur(1px) brightness(.78) saturate(.9);
   }
   .hero-title{
+    padding: 10px;
     margin: 8px 0;
     font-size: clamp(40px, 12vw, 64px); /* baja enorme */
     line-height: 1.05;
   }
   .hero-title2{
+    padding: 15px;
     margin-top: 4px;
     font-size: clamp(20px, 6.5vw, 32px);
     text-shadow: 1px 1px 0 rgba(0,0,0,.25);
   }
-  .badges{ gap: 8px; }
-  .badge { padding: 6px 10px; font-size: 14px; }
+  .badges{ 
+    gap: 8px; 
+    padding: 20px;
+    margin-top: 70px;
+  }
+  .badge { 
+    font-size: 14px;
+  }
 }
 
 /* ---------- Grids y cards en móvil ---------- */

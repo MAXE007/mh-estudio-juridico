@@ -1,6 +1,6 @@
 'use client';
 import heroBg from './assets/lawer.jpeg';
-import aboutImg from './assets/description.jpeg';
+import aboutImg from './assets/about.jpeg';
 import { useEffect, useState } from 'react';
 import ContactForm from '../components/ContactForm'; // ruta relativa
 
