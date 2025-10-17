@@ -269,7 +269,7 @@ export default function Home() {
               <div className="card map-card">
                 <h3 style={{margin:0, fontWeight:600}}>Información de contacto</h3>
                 <ul className="mt-3" style={{listStyle:'none', padding:0, margin:0, color:'#575757', fontSize:14}}>
-                  <li><strong>Tel:</strong> +54 9 260 420-5682</li>
+                  <li><strong>Tel:</strong> 2604-205682</li>
                   <li><strong>Email:</strong> mhestudiojuridicomza@gmail.com</li>
                   <li><strong>Dirección:</strong> Lugones 211, San Rafael, Mendoza, Argentina.</li>
                   <li><strong>Horario:</strong> Lun a Vie 8–16 h</li>
