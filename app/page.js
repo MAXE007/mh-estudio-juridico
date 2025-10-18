@@ -324,7 +324,7 @@ export default function Home() {
               {/* Grupo 1 */}
               <details className="faq-item card">
                 <summary>¿La primera consulta tiene costo?</summary>
-                <p className="mt-2">Ofrecemos una primera orientación sin compromiso por WhatsApp. Si el caso requiere análisis documental o reunión, te informamos el costo antes de avanzar.</p>
+                <p className="mt-2">Ofrecemos una primera asesoría gratuita. Si el caso requiere análisis documental o reunión, te informamos el costo antes de avanzar.</p>
               </details>
               <details className="faq-item card">
                 <summary>¿Cómo pactan los honorarios?</summary>
@@ -334,11 +334,6 @@ export default function Home() {
                 <summary>¿Puedo pagar en cuotas?</summary>
                 <p className="mt-2">En muchos casos sí. Definimos un plan acorde a las etapas del proceso.</p>
               </details>
-              <details className="faq-item card">
-                <summary>¿Emiten factura?</summary>
-                <p className="mt-2">Sí, emitimos la documentación correspondiente a cada servicio.</p>
-              </details>
-
               {/* Grupo 2 */}
               <details className="faq-item card">
                 <summary>¿Atienden casos de todo el país?</summary>
@@ -369,10 +364,6 @@ export default function Home() {
               <details className="faq-item card">
                 <summary>¿Hacen divorcios y sucesiones?</summary>
                 <p className="mt-2">Sí. Te explicamos opciones, plazos y costos de forma clara antes de iniciar.</p>
-              </details>
-              <details className="faq-item card">
-                <summary>¿Defienden al consumidor?</summary>
-                <p className="mt-2">Sí: fraudes, cláusulas abusivas, tarjetas y bancos. Evaluamos viabilidad y estrategia.</p>
               </details>
 
               {/* Más ejemplos para ver volumen */}

@@ -21,7 +21,7 @@ img { max-width: 100%; display: block; }
   --sky:     #B7CCE2; /* acento frío */
   --white:   #FFFFFF;
   --muted:   #686868;
-  --gold:    #909753;
+  --gold:    #aab362;
 }
 
 /* ====== HELPERS ====== */
@@ -88,7 +88,7 @@ img { max-width: 100%; display: block; }
 /* ====== HEADER & NAV ======  barra*/ 
 .header{
   position: sticky; top: 0; z-index: 30;
-  background: #909753;
+  background: var(--gold);
   backdrop-filter: blur(8px);
   border-bottom: 1px solid rgba(0,0,0,.15);
 }
@@ -191,7 +191,7 @@ img { max-width: 100%; display: block; }
     linear-gradient(var(--bg), var(--bg));
     background-repeat: no-repeat, no-repeat;
     background-position: center, center 38%;
-    background-size: 100% 100%, clamp(500px, 40vw, 800px) auto !important;
+    background-size: 100% 100%, clamp(500px, 40vw, 800px) auto;
 
   /* look suave para la foto */
   filter: blur(10px) brightness(.85) saturate(.5);
@@ -356,9 +356,6 @@ img { max-width: 100%; display: block; }
 @media (min-width: 1024px){
   .map-embed { height: 380px; }
 }
-.hero-bg{
-  
-}
 
 .about-grid{
   display: grid;
@@ -516,6 +513,7 @@ img { max-width: 100%; display: block; }
     background-size: cover;    /* que cubra; evita “zoom raro” */
     background-position: center;
     filter: blur(1px) brightness(.78) saturate(.9);
+    background-size: 100% 100%, cover;  
   }
   .hero-title{
     padding: 10px;
