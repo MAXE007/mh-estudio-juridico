@@ -177,29 +177,6 @@ export default function Home() {
             <br />
           </h1>
           <h2 className="hero-title2">Estudio Jurídico</h2>
-          {/* badges */}
-          <div className="badges">
-            <div className="badge">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-                <path d="M12 22s7-7.16 7-12a7 7 0 1 0-14 0c0 4.84 7 12 7 12Z" stroke="#555" strokeWidth="1.6"/>
-                <circle cx="12" cy="10" r="3" fill="#555"/>
-              </svg>
-              San Rafael y alrededores
-            </div>
-            <div className="badge">
-              <svg width="16" height="16" viewBox="0 0 256 256" fill="#555">
-                <path d="M128.002 24C72.692 24 28 68.69 28 124c0 22.02 7.3 42.4 19.7 58.87L36 232l50.25-11.2C102.6 227.25 115.02 230 128 230c55.31 0 100.002-44.69 100.002-100S183.312 24 128.002 24zm0 180c-12.02 0-23.43-2.7-33.6-7.52l-2.4-1.16-29.7 6.6 6.34-29.04-1.92-2.48C58.06 158.4 52 141.79 52 124c0-41.91 34.09-76 76.002-76 41.91 0 76 34.09 76 76s-34.09 76-76 76z"/>
-              </svg>
-              WhatsApp: +54 9 260 420-5682
-            </div>
-            <div className="badge">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="#555">
-                <path d="M12 12a5 5 0 1 0-5-5 5 5 0 0 0 5 5Zm0 2c-5 0-9 3-9 6v2h18v-2c0-3-4-6-9-6Z"/>
-              </svg>
-              atención de 8hs a 16hs , lun a vie
-            </div>
-          </div>
-
           <div>
             <a href={WAPP_URL} target="_blank" rel="noopener" className="btn btn-cta btn-hero">
               Solicitar consulta
