@@ -5,7 +5,7 @@ body {
   margin: 0;
   font-family: Georgia, 'Times New Roman', Times, serif;
   color: #1E1E1E;
-  background: var(--bg);
+  background: var(--white);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -21,7 +21,7 @@ img { max-width: 100%; display: block; }
   --sky:     #B7CCE2; /* acento frío */
   --white:   #FFFFFF;
   --muted:   #686868;
-  --gold:    #aab362;
+  --gold:    #638586;
 }
 
 /* ====== HELPERS ====== */
@@ -104,15 +104,34 @@ img { max-width: 100%; display: block; }
 }
 
 /* marca a la IZQUIERDA */
-.brand{ justify-self: start; text-decoration: none; }
-.brand-badge{
-  display: inline-flex; align-items: center; gap: 10px;
-  padding: 8px 12px; border-radius: 12px;
-  color: #fff;
-  font-size: large;
-  text-shadow: 0 0 2px var(--ink);
+.brand-badge{ 
+  display:inline-flex; 
+  align-items:center; 
+  gap: 12px;                 /* un pelín más de aire */
+  line-height: 1;  
 }
 
+.header .brand-logo{
+  height: 48px;                /* subí o bajá a gusto (p. ej. 40px) */
+  width: auto;                 /* mantiene proporción */
+  object-fit: contain;
+  display: block;
+  flex-shrink: 0;
+
+  /* “píntalo” blanco como el título, sin tocar la imagen fuente */
+  filter: brightness(0) saturate(100%) invert(1) contrast(110%);
+  /* un halo muy sutil para legibilidad */
+  filter: brightness(0) saturate(100%) invert(1) contrast(110%)
+          drop-shadow(0 1px 0 rgba(0,0,0,.25));
+}
+
+/* Texto de marca en blanco y con peso */
+.header .brand-text{
+  color: #fff;
+  font-weight: 700;
+  letter-spacing: .2px;
+  text-shadow: 0 1px 0 rgba(0,0,0,.15);
+}
 /* menú CENTRADO (respecto al viewport, no al container) */
 .nav{
   justify-self: center;
@@ -184,18 +203,15 @@ img { max-width: 100%; display: block; }
   inset: 0;
   z-index: 0;
 
-  /* 2 capas:
-     1) fondo liso igual al de la página (cubre todo)
-     2) la balanza, más chica y centrada */
-  background-image:
-    linear-gradient(var(--bg), var(--bg));
-    background-repeat: no-repeat, no-repeat;
-    background-position: center, center 38%;
-    background-size: 100% 100%, clamp(500px, 40vw, 800px) auto;
-
-  /* look suave para la foto */
-  filter: blur(10px) brightness(.85) saturate(.5);
-  opacity: .8;
+  /* 2 capas (¡mismo número de valores en todas las props!):
+     1) gradiente/fondo liso
+     2) logo (PNG/SVG con fondo transparente) */
+  background-repeat: no-repeat, no-repeat;
+  background-position: center, center 42%; /* eje Y un poco más arriba */
+  background-size: 100% 100%, clamp(420px, 680px) auto;
+  /* look suave (mucho blur “engorda” la figura) */
+  filter: blur(3px) brightness(.1) saturate(.5);
+  opacity: .4;
 }
 
 /* Capa 1: overlay pastel encima del fondo (suaviza aún más) */
@@ -204,9 +220,9 @@ img { max-width: 100%; display: block; }
   position: absolute; inset: 0;
   background: linear-gradient(
     180deg,
-    rgba(253, 249, 249, 0) 0%,
-    rgba(176, 187, 149, 0.5) 95%,
-    var(--bg) 100%
+    #789ac073 20px,
+    rgb(108, 128, 139) 95%,
+    var(--sage) 100%
   );
   z-index: 1;
 }
@@ -221,16 +237,16 @@ img { max-width: 100%; display: block; }
   line-height: 1.05;
   font-weight: 800;
   letter-spacing: -.02em;
-  color: #909753;
-  text-shadow: 5px 2px 0 var(--white);
+  color: #42554f;
+  text-shadow: 5px 2px 0 #092013;
 
 }
 .hero-title2{
   margin: 4px 0 0;
   font-size: 70px;
   font-weight: 700;
-  color: #1a1a1a;
-  text-shadow: 2px 2px 0 var(--muted);
+  color: #464f5f;
+  text-shadow: 2px 2px 0 #092013;
 }
 
 .hero-row { display: grid; gap: 24px; }
@@ -398,6 +414,11 @@ img { max-width: 100%; display: block; }
 @media (min-width: 901px) and (max-width: 1280px){
   /* banda del color de fondo en la mitad izquierda para
      que la imagen no se “meta” debajo del texto */
+
+  .hero-title{
+    font-size: 130px;
+  }
+
   .brand-badge{
     font-size: 15px;
 
@@ -513,7 +534,7 @@ img { max-width: 100%; display: block; }
     background-size: cover;    /* que cubra; evita “zoom raro” */
     background-position: center;
     filter: blur(1px) brightness(.78) saturate(.9);
-    background-size: 100% 100%, cover;  
+    background-size: 100% 85%, cover;  
   }
   .hero-title{
     padding: 10px;
@@ -613,4 +634,35 @@ img { max-width: 100%; display: block; }
 /* hace que las dos columnas se estiren a la misma altura (la del mapa) */
 .contact-grid { 
   align-items: stretch; 
+}
+
+
+/* ===== Animaciones de reveal (mobile) ===== */
+@media (max-width: 768px){
+  /* Por defecto, ocultas hasta que entren */
+  .reveal {
+    opacity: 0;
+    transform: translateY(18px) scale(.985);
+    filter: blur(1.5px);
+    transition:
+      transform .6s cubic-bezier(.22,.61,.36,1),
+      opacity   .6s cubic-bezier(.22,.61,.36,1),
+      filter    .6s cubic-bezier(.22,.61,.36,1);
+    transition-delay: var(--delay, 0ms);
+    will-change: transform, opacity, filter;
+  }
+  .reveal.in {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+
+  /* Tocá y da “feedback” */
+  .card:active { transform: translateY(1px) scale(.995); }
+
+  /* Si el usuario prefiere menos movimiento, no animamos */
+  @media (prefers-reduced-motion: reduce){
+    .reveal,
+    .reveal.in { transition: none; transform: none; filter: none; opacity: 1; }
+  }
 }

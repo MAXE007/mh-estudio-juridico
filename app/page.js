@@ -1,8 +1,10 @@
 'use client';
-import heroBg from './assets/balanza.jpg';
-import aboutImg from './assets/about.jpeg';
+import heroBg from './assets/logo.png';
+import aboutImg from './assets/oficina.jpeg';
 import { useEffect, useState } from 'react';
 import ContactForm from '../components/ContactForm'; // ruta relativa
+import Image from "next/image";
+import logo from "./assets/logo.png";
 
 const WAPP_NUM = process.env.NEXT_PUBLIC_WAPP_NUM || '5492604205682';
 const WAPP_TEXT = process.env.NEXT_PUBLIC_WAPP_TEXT || 'Hola%20quiero%20hacer%20una%20consulta';
@@ -57,6 +59,37 @@ export default function Home() {
     if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
   };
 
+  // Animar cards al entrar (mobile)
+  useEffect(() => {
+    // respetar usuarios que piden menos animación
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    // Tomamos sólo las cards de secciones (excluimos el mapa)
+    const cards = Array.from(document.querySelectorAll('.section .card:not(.map-card)'));
+    if (!cards.length) return;
+
+    // Clase base + pequeño "stagger" usando una CSS var
+    cards.forEach((el, i) => {
+      el.classList.add('reveal');
+      // Stagger de 0–180ms; reinicia cada fila para grids
+      const delay = (i % 4) * 60; // ajustá 4 según columnas típicas
+      el.style.setProperty('--delay', `${delay}ms`);
+    });
+
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('in');
+          io.unobserve(e.target); // una sola vez
+        }
+      });
+    }, { rootMargin: '0px 0px -10% 0px', threshold: 0.12 });
+
+    cards.forEach(el => io.observe(el));
+    return () => io.disconnect();
+  }, []);
+
+
   return (
     <main>
       {/* HEADER */}
@@ -68,7 +101,16 @@ export default function Home() {
             onClick={(e) => { e.preventDefault(); go('#inicio'); }}
             aria-label="Ir al inicio"
           >
-            <div className="brand-badge">⚖️ MH ESTUDIO JURÍDICO Y ASOCIADOS</div>
+            <div className="brand-badge">
+              <Image
+                src={logo}
+                alt=""
+                className="brand-logo"
+                aria-hidden="true"
+                priority
+              />
+              <span className="brand-text">MH & ASOCIADOS</span>
+            </div>
           </a>
 
           {/* nav desktop (SIN botón WhatsApp) */}
