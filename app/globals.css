@@ -181,7 +181,7 @@ img{ max-width: 100%; display: block; }
 /* Capa 1: overlay pastel */
 .hero::before{
   content:""; position:absolute; inset:0; z-index:1;
-  background: linear-gradient(180deg, #81a2c773 20%, var(--sky) 95%, #defdfd 100%);
+  background: linear-gradient(180deg, #81a2c773 20%, #92b5b6 95%, #defdfd 100%);
 }
 
 /* Capa 2: contenido */
