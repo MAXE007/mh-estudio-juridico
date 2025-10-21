@@ -385,12 +385,12 @@ img{ max-width: 100%; display: block; }
     font-size: 45px;
     line-height:1.05; 
 
-    text-shadow:4px 1px 0 #444034;
+    text-shadow:1px 1px#444034;
   }
   .hero-title2{ 
     padding:15px; 
     font-size:30px; 
-    text-shadow:2px 2px 0 #615e50;
+    text-shadow:1px 1px #615e50;
   }
 
   .btn-hero{
