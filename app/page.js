@@ -1,10 +1,12 @@
 'use client';
-import heroBg from './assets/logo.png';
+//import heroBg from './assets/logo.png';
+import heroBg from './assets/fondo.jpeg';
 import aboutImg from './assets/oficina.jpeg';
 import { useEffect, useState } from 'react';
 import ContactForm from '../components/ContactForm'; // ruta relativa
 import Image from "next/image";
 import logo from "./assets/logo.png";
+import { FaBriefcase, FaBalanceScale, FaHandshake } from "react-icons/fa";
 
 const WAPP_NUM = process.env.NEXT_PUBLIC_WAPP_NUM || '5492604205682';
 const WAPP_TEXT = process.env.NEXT_PUBLIC_WAPP_TEXT || 'Hola%20quiero%20hacer%20una%20consulta';
@@ -188,7 +190,7 @@ export default function Home() {
 
       {/* NOSOTROS */}
       <section id="nosotros" className="section about">
-        <h2 className="h2-about">Nosotros</h2>
+        <h2 className="h2-about">NOSOTROS</h2>
         <div className="about-grid" style={{ '--about': `url(${aboutImg.src})` }}>
 
           <div className="about-text">
@@ -216,7 +218,7 @@ export default function Home() {
       {/* MÉTODO */}
       <section id="metodo" className="section">
         <div className="work">
-          <h2 className="h2-sub">Cómo trabajamos</h2>
+          <h2 className="h2-sub">CÓMO TRABAJAMOS</h2>
           <div className="mt-6 grid grid-3-md">
             {[
               { t: 'Análisis personalizado', d: 'Estudio profundo del caso y estrategia efectiva.' },
@@ -235,17 +237,15 @@ export default function Home() {
       {/* ÁREAS */}
       <section id="servicios" className="section">
         <div className="area">
-          <h2 className="h2-sub">Áreas de práctica</h2>
-          <p className="mt-2" style={{color:'#606060'}}>
-            Atendemos tu consulta de forma integral y en lenguaje claro. Si tu caso no encaja exactamente aquí, escribinos y te orientamos.
-          </p>
-          <div className="mt-6 grid grid-2-md">
+          <h2 className="h2-sub">ÁREAS DE PRÁCTICA</h2>
+          <div className="mt-6 grid grid-3-md">
             {[
-              { t: 'Derecho Laboral', d: 'Despidos, diferencias salariales, trabajo no registrado, acoso laboral.' },
-              { t: 'Derecho Civil', d: 'Divorcios, sucesiones, contratos, daños y perjuicios, alquileres.' },
-              { t: 'Derecho Comercial', d: 'Tarjetas, créditos, cheques, pagarés, contratos comerciales.' },
+              { t: 'Derecho Laboral', d: 'Accidentes laborales, enfermedades profesionales', icon: <FaBriefcase /> },
+              { t: 'Derecho Civil', d: 'Accidentes de tránsito', icon: <FaBalanceScale /> },
+              { t: 'Derecho Comercial', d: 'Concursos y quiebras', icon: <FaHandshake /> },
             ].map((x, i) => (
-              <article key={i} className="card" style={{padding:24}}>
+              <article key={i} className="card area-card">
+                <div className="icon-wrap">{x.icon}</div>
                 <h3>{x.t}</h3>
                 <p className="mt-2">{x.d}</p>
               </article>
@@ -257,7 +257,7 @@ export default function Home() {
       {/* TESTIMONIOS */}
       <section className="section">
         <div className="people">
-          <h2 className="h2-sub">Testimonios</h2>
+          <h2 className="h2-sub">TESTIMONIOS</h2>
           <div className="mt-6 grid grid-2-md">
             {[
               { q: '“Solución rápida y favorable, excelente trato humano.”', a: 'Eduardo R. M.' },
@@ -277,8 +277,8 @@ export default function Home() {
       {/* CONTACTO */}
       <section id="contacto" className="section-lg">
         <div className="contact">
-          <h2 className="h2-sub">Contacto</h2>
-          <p className="mt-2" style={{color:'#606060'}}>Dejanos tu consulta y te respondemos a la brevedad.</p>
+          <h2 className="h2-sub">CONTACTO</h2>
+          <p className="mt-2">Dejanos tu consulta y te respondemos a la brevedad.</p>
 
           <div className="mt-8 contact-grid">
             <div>

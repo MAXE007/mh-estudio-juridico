@@ -5,18 +5,18 @@
 html { scroll-behavior: smooth; }
 :root{
   --bg:      #F5F3EE;    /* crema */
-  --ink:     #1E1E1E;    /* texto */
+  --ink:     #444242;    /* texto */
   --sand:    #D9CBBE;    /* bordes */
   --sage:    #BFD6C2;    /* CTA */
   --blush:   #E7C6CF;    /* acento */
   --white:   #FFFFFF;
   --muted:   #686868;
-  --sky:     #789b9c;    /* header/overlay */
-  --gold:    #909753;    /* bordes tarjetas (ya lo usabas) */
+  --sky:     #83815a;    /* header/overlay */
+  --gold:    #646840;    /* bordes tarjetas (ya lo usabas) */
 }
 body{
   margin: 0;
-  font-family: Georgia, "Times New Roman", Times, serif;
+  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
   color: var(--ink);
   background: var(--white);
   -webkit-font-smoothing: antialiased;
@@ -34,7 +34,20 @@ img{ max-width: 100%; display: block; }
 .section-lg{ padding: 64px; }
 
 .h1{ font-size: 32px; line-height: 1.2; font-weight: 800; letter-spacing: -0.02em; }
-.h2-sub{ text-align: center; font-size: 35px; }
+.h2-about{ 
+  font-size:37px; 
+  text-align:center; 
+  color:#9fb6b379; 
+  text-shadow:1px 1px #000000;
+
+}
+.h2-sub{ 
+  text-align: 
+  center; 
+  font-size: 35px; 
+  color:#b5c5c379; 
+  text-shadow:1px 1px #000000;
+}
 
 .p-lg{ font-size: 18px; color: var(--muted); }
 
@@ -81,8 +94,8 @@ img{ max-width: 100%; display: block; }
 
 /* CTA principal */
 .btn-cta{
-  background:#709191; color:var(--white);
-  margin-top:55px; padding:14px 22px; font-size:16px; border-radius:14px;
+  background:#706d64; color:var(--white);
+  margin-top:50px; padding:14px 22px; font-size:16px; border-radius:14px;
   transition:.5s;
 }
 .btn-cta:hover {
@@ -170,18 +183,18 @@ img{ max-width: 100%; display: block; }
 
 /* Capa 0: imagen/logo + fondo (fuentes de imagen las seteás en el HTML con style o en otra regla) */
 .hero-bg{
-  position:absolute; inset:0; z-index:0;
-  background-repeat: no-repeat, no-repeat;
-  background-position: center, center 42%;
-  background-size: 100% 100%, clamp(420px, 680px) auto;
-  filter: blur(3px) brightness(.1) saturate(.5);
-  opacity:.4;
+  position:absolute; 
+  inset:0; 
+  z-index:2;  
+  background-size: cover;
+
+
 }
 
 /* Capa 1: overlay pastel */
 .hero::before{
-  content:""; position:absolute; inset:0; z-index:1;
-  background: linear-gradient(180deg, #9ea89f73 20%, #afbdabe3 95%, #ffffff 100%);
+  position:absolute; inset:0; z-index:1;
+  background: linear-gradient(180deg, #1c2b1eaf 20%, #afbdabe3 95%, #ffffff 100%);
 }
 
 /* Capa 2: contenido */
@@ -189,18 +202,62 @@ img{ max-width: 100%; display: block; }
 
 /* Títulos */
 .hero-title{
-  margin:40px; font-size:150px; line-height:1.05; font-weight:800; letter-spacing:-.02em;
-  color:#9fb6b379; 
-  text-shadow:5px 2px 0 #000000;
+  margin:20px; font-size:140px; line-height:1.05; font-weight:700; letter-spacing:-.02em;
+  color:#75756e8c; 
+  text-shadow:4px 1px 0 #444034;
 }
 .hero-title2{
-  margin:4px 0 0; 
+  margin:1px 0 0; 
   font-size:70px; 
   font-weight:700; 
-  color:#555a63; 
-  text-shadow:2px 2px 0 #000000;
+  color:#75756e8c; 
+  text-shadow:2px 2px 0 #615e50;
 }
 
+
+/* Centrar contenido en las cards de Áreas de práctica */
+#servicios .card,
+#servicios .area-card{
+  display: flex;
+  flex-direction: column;
+  align-items: center;   /* centra horizontalmente */
+  text-align: center;    /* centra textos */
+  height: 100%;
+}
+
+/* el icono redondo centrado y con espacio inferior */
+#servicios .icon-wrap{
+  margin: 0 auto 12px auto;  /* centra + separa del título */
+}
+
+/* que el grid estire todas las cards a la misma altura */
+#servicios .grid{ 
+  align-items: stretch; 
+}
+
+/* pequeño ajuste de tipografía (opcional) */
+#servicios .card h3{ margin: 4px 0 2px; }
+#servicios .card p { margin: 0; line-height: 1.55; }
+
+/* ==== Íconos para cards de Áreas ==== */
+.area-card .icon-wrap{
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: var(--sky);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  margin-bottom: 14px;
+  box-shadow: 0 6px 12px rgba(0,0,0,.08);
+}
+
+/* Si querés un color distinto para cada área */
+.area-card:nth-child(1) .icon-wrap{ background: var(--sky); } /* Laboral */
+.area-card:nth-child(2) .icon-wrap{ background: var(--sky); } /* Civil */
+.area-card:nth-child(3) .icon-wrap{ background: var(--sky); } /* Comercial */
 /* =========================================================
    SECCIONES (Áreas / Contacto / FAQ / Footer)
    ========================================================= */
@@ -260,7 +317,7 @@ img{ max-width: 100%; display: block; }
 }
 .about-text{ display:flex; grid-column:1 / 2; text-align:left; flex-direction:column; }
 .about-text p{ padding:50px; text-align:justify; line-height:1.75; font-size:24px; color:#444; }
-.h2-about{ font-size:37px; text-align:center; }
+
 
 /* FAQ */
 .faq-preview .faq-grid{ display:grid; gap:16px; }
@@ -317,24 +374,23 @@ img{ max-width: 100%; display: block; }
   }
 
   /* Hero compacto */
-  .hero{ padding:90px 16px 42px; text-align:center; height:700px; }
-  .hero-bg{
-    background-position:center -15%;
-    filter: blur(1px) brightness(.78) saturate(.9);
-    background-size: 115% 80%, cover;  /* fondo ocupa alto, logo cubre */
+  .hero{ 
+    padding:90px 16px 42px; text-align:center; height:700px; 
   }
+
   .hero-title{ 
     padding:20px; 
     margin:1px; 
     margin-top: 30px;
     font-size: 45px;
     line-height:1.05; 
-    text-shadow:2px 1px #000000;
+
+    text-shadow:4px 1px 0 #444034;
   }
   .hero-title2{ 
     padding:15px; 
     font-size:30px; 
-    text-shadow:1px 1px #000000;
+    text-shadow:2px 2px 0 #615e50;
   }
 
   .btn-hero{
