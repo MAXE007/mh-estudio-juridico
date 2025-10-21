@@ -81,7 +81,7 @@ img{ max-width: 100%; display: block; }
 
 /* CTA principal */
 .btn-cta{
-  background:#457777; color:var(--ink);
+  background:#709191; color:var(--white);
   margin-top:55px; padding:14px 22px; font-size:16px; border-radius:14px;
   transition:.5s;
 }
@@ -190,14 +190,14 @@ img{ max-width: 100%; display: block; }
 /* Títulos */
 .hero-title{
   margin:40px; font-size:150px; line-height:1.05; font-weight:800; letter-spacing:-.02em;
-  color:#42554f; text-shadow:5px 2px 0 #092013;
+  color:#373d3b; text-shadow:5px 2px 0 #748179;
 }
 .hero-title2{
   margin:4px 0 0; 
   font-size:70px; 
   font-weight:700; 
-  color:#464f5f; 
-  text-shadow:2px 2px 0 #092013;
+  color:#555a63; 
+  text-shadow:2px 2px 0 #000000;
 }
 
 /* =========================================================
