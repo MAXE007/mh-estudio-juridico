@@ -181,7 +181,7 @@ img{ max-width: 100%; display: block; }
 /* Capa 1: overlay pastel */
 .hero::before{
   content:""; position:absolute; inset:0; z-index:1;
-  background: linear-gradient(180deg, #9ea89f73 20%, #afbdabe3 90%, #ffffff 100%);
+  background: linear-gradient(180deg, #9ea89f73 20%, #afbdabe3 95%, #ffffff 100%);
 }
 
 /* Capa 2: contenido */
@@ -329,7 +329,7 @@ img{ max-width: 100%; display: block; }
     margin-top: 30px;
     font-size: 45px;
     line-height:1.05; 
-    text-shadow:2px 1px #748179;
+    text-shadow:2px 1px #000000;
   }
   .hero-title2{ 
     padding:15px; 
