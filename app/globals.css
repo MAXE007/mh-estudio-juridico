@@ -11,7 +11,7 @@ html { scroll-behavior: smooth; }
   --blush:   #E7C6CF;    /* acento */
   --white:   #FFFFFF;
   --muted:   #686868;
-  --sky:     #638586;    /* header/overlay */
+  --sky:     #789b9c;    /* header/overlay */
   --gold:    #909753;    /* bordes tarjetas (ya lo usabas) */
 }
 body{
@@ -124,7 +124,13 @@ img{ max-width: 100%; display: block; }
 .nav a:hover{ background: rgba(39,15,15,.18); border:1px solid var(--white); }
 .nav a.active{ background:#fff; color:#1e1e1e; box-shadow:0 2px 8px rgba(0,0,0,.08); border:2px solid var(--white); }
 
-.burger{ height:40px; width:40px; border-radius:10px; border:0; background:transparent; cursor:pointer; }
+.burger{ 
+  height:40px; 
+  width:40px; 
+  border-radius:10px; border:0; 
+  background:transparent; 
+  cursor:pointer; 
+}
 .burger:hover{ background:#ffffff; }
 .burger-ico{ position:relative; height:20px; width:20px; display:inline-block; }
 .burger-ico span{ position:absolute; left:0; right:0; height:2px; background:var(--ink);
@@ -137,10 +143,25 @@ img{ max-width: 100%; display: block; }
 /* Menú móvil fullscreen */
 .mobile-menu{ position:fixed; inset:0; background:#fff; z-index:60; display:none; }
 .mobile-menu.open{ display:block; }
-.mobile-top{ position:sticky; top:0; background:#fff; border-bottom:1px solid var(--sand); padding:10px 16px; display:flex; align-items:center; justify-content:space-between; }
+.mobile-top{ position:sticky; 
+  top:0; 
+  background:var(--sky); 
+  border-bottom:1px solid var(--sky); 
+  padding:10px 16px; 
+  display:flex; 
+  align-items:center; 
+  justify-content:space-between; 
+}
 .mobile-links{ padding:12px 16px 24px; display:flex; flex-direction:column; gap:10px; }
-.mobile-links a{ padding:12px 14px; border:1px solid var(--sand); border-radius:14px; text-decoration:none; color:var(--ink); }
-.mobile-links a:hover{ background:var(--bg); }
+.mobile-links a{ 
+  padding:12px 14px; 
+  border:1px solid var(--sky); 
+  border-radius:14px; 
+  text-decoration:none; 
+  color:var(--ink); 
+  font-size: 16px;
+}
+.mobile-links a:hover{ background:var(--sky); }
 
 /* =========================================================
    HERO (3 capas: fondo 0 + overlay 1 + contenido 2)
@@ -188,7 +209,7 @@ img{ max-width: 100%; display: block; }
 
 /* Formulario */
 .input,.select,.textarea{
-  width:100%; border:1px solid var(--sand); border-radius:12px; padding:10px 12px; background:#fff; color:var(--ink);
+  width:100%; border:1px solid var(--sky); border-radius:12px; padding:10px 12px; background:#fff; color:var(--ink);
   font:inherit;
 }
 .textarea{ min-height:130px; resize:vertical; }
@@ -221,7 +242,7 @@ img{ max-width: 100%; display: block; }
 .map-card{ padding:22px; }
 .map-embed{
   margin-top:14px; width:100%; height:320px;
-  border:1px solid var(--sand); border-radius:16px; overflow:hidden; box-shadow:0 8px 22px rgba(0,0,0,.06);
+  border:1px solid var(--sky); border-radius:16px; overflow:hidden; box-shadow:0 8px 22px rgba(0,0,0,.06);
 }
 
 /* About (base = desktop layout lo ajustamos luego en MQ móvil) */
@@ -268,9 +289,30 @@ img{ max-width: 100%; display: block; }
 @media (max-width: 768px){
   :root{ --header-h: 64px; }
 
+  .header-row{
+    display: grid;
+    grid-template-columns: 1fr auto 1fr; /* [col1] [col2] [col3] */
+    align-items: center;
+  }
+
+  /* oculta nav, pero ya no nos “rompe” el centrado */
+  .nav{ display: none !important; }
+
+  /* 1) Logo al CENTRO (columna 2) */
+  .brand{
+    grid-column: 2 / 3;
+    justify-self: center;
+  }
+  .brand-text{ display: none !important; }
+  .header .brand-logo{ 
+    height: 48px; 
+  } /* ajustá a gusto */
+
+  /* 2) Burger a la DERECHA (columna 3) */
   .burger{
-    justify-self: end;   /* lo empuja al borde derecho de su columna */
-    margin-left: auto;   /* por si algún estilo previo lo “tira” hacia adentro */
+    grid-column: 3 / 4;
+    justify-self: end;
+    margin: 0 !important;
   }
 
   /* Hero compacto */
@@ -278,20 +320,24 @@ img{ max-width: 100%; display: block; }
   .hero-bg{
     background-position:center -15%;
     filter: blur(1px) brightness(.78) saturate(.9);
-    background-size: 100% 80%, cover;  /* fondo ocupa alto, logo cubre */
+    background-size: 115% 80%, cover;  /* fondo ocupa alto, logo cubre */
   }
   .hero-title{ 
     padding:20px; 
     margin:1px; 
-
+    margin-top: 30px;
     font-size: 45px;
     line-height:1.05; 
-    text-shadow:2px 2px#092013;
+    text-shadow:2px 1px #092013;
   }
   .hero-title2{ 
     padding:15px; 
     font-size:30px; 
-    text-shadow:1px 1px #092013
+    text-shadow:1px 1px #092013;
+  }
+
+  .btn-hero{
+    margin-top: 120px;
   }
 
   /* Header móvil ya definido (nav oculto, burger visible) */
@@ -379,8 +425,22 @@ img{ max-width: 100%; display: block; }
     width:calc(50% + 20px); background:var(--bg);
     border-radius:20px 0 0 20px; z-index:0;
   }
-  .about-text{ position:relative; z-index:1; }
-  .about-text p{ padding:30px; text-align:justify; font-size:19px; }
+  .about-text{ 
+    position:relative; 
+    z-index:1; 
+  }
+  .about-text p{ 
+    padding:30px; 
+    text-align:justify; 
+    font-size:19px; 
+  }
+
+  #nosotros .card{
+    padding: 14px 16px;        
+    border-radius: 14px;
+    font-size: 16px;
+  }
+
 }
 
 /* =========================================================
