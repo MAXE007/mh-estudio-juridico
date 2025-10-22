@@ -2,6 +2,7 @@
 //import heroBg from './assets/logo.png';
 import heroBg from './assets/fondo.jpeg';
 import aboutImg from './assets/oficina.jpeg';
+import balanza from "./assets/balanza.png";
 import { useEffect, useState } from 'react';
 import ContactForm from '../components/ContactForm'; // ruta relativa
 import Image from "next/image";
@@ -174,6 +175,16 @@ export default function Home() {
 
         {/* Capa 2: contenido */}
         <div className="container hero-inner">
+          <div className="container hero-inner">
+            <Image
+              src={balanza}
+              alt="Balanza de la justicia"
+              className="hero-scale"
+              width={220}
+              height={220}
+              priority
+            />
+          </div>
           <h1 className="hero-title">
             MH &amp; ASOCIADOS
             <br />

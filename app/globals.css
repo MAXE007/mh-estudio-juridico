@@ -187,8 +187,6 @@ img{ max-width: 100%; display: block; }
   inset:0; 
   z-index:2;  
   background-size: cover;
-
-
 }
 
 /* Capa 1: overlay pastel */
@@ -199,6 +197,23 @@ img{ max-width: 100%; display: block; }
 
 /* Capa 2: contenido */
 .hero-inner{ position:relative; z-index:2; }
+
+.hero-scale{
+  position: absolute;   
+  left: 50%;
+  transform: translateX(-50%);
+  top: -180px;                   
+  margin: 0;                    
+  height: auto;
+  filter: drop-shadow(0 8px 18px rgba(0,0,0,.22));
+  opacity: .95;
+  z-index: 2;
+}
+
+@keyframes fadeInScale {
+  from { opacity: 0; transform: scale(0.8); }
+  to { opacity: 1; transform: scale(1); }
+}
 
 /* Títulos */
 .hero-title{
@@ -525,6 +540,10 @@ img{ max-width: 100%; display: block; }
   /* Hero compacto */
   .hero{ 
     padding:90px 16px 42px; text-align:center; height:700px; 
+  }
+  .hero-scale{
+    top: -110px;
+    width: 140px;
   }
 
   .hero-title{ 
