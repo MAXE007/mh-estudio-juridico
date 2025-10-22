@@ -259,8 +259,115 @@ img{ max-width: 100%; display: block; }
 .area-card:nth-child(2) .icon-wrap{ background: var(--sky); } /* Civil */
 .area-card:nth-child(3) .icon-wrap{ background: var(--sky); } /* Comercial */
 /* =========================================================
-   SECCIONES (Áreas / Contacto / FAQ / Footer)
+   SECCIONES (Áreas / Testimonios / Contacto / FAQ / Footer)
    ========================================================= */
+
+/* ===== Cómo trabajamos – estilo referencia (rounded + línea sutil) ===== */
+#metodo .work-card{
+  position: relative;
+  overflow: hidden;
+  border: 2px solid var(--sky);
+  border-radius: 22px;
+  padding: 20px 22px 18px;
+  background: linear-gradient(180deg, #ffffff 0%, #f7faf9 100%);
+  box-shadow: 0 12px 28px rgba(0,0,0,.06);
+  transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+#metodo .work-card:hover{
+  transform: translateY(-3px);
+  border-color: rgba(120,155,156,.55);
+  box-shadow: 0 18px 36px rgba(0,0,0,.10);
+}
+
+#metodo .work-top{
+  display: flex;
+  align-items: start;
+  justify-content: center;
+  gap: 12px;
+}
+
+#metodo .work-card h3{
+  margin: 2px 0 8px;
+  font-size: 20px;
+  line-height: 1.25;
+}
+
+#metodo .work-card p{
+  margin: 0;
+  color: #3f3f3f;
+  line-height: 1.55;
+}
+
+/* icono outline arriba-derecha */
+#metodo .work-icon{
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  flex: 0 0 auto;
+  width: 44px; height: 44px;
+  border-radius: 12px;
+  display: grid; place-items: center;
+  font-size: 20px;
+  color: var(--sky);
+  border: 2px solid color-mix(in srgb, var(--sky) 85%, white);
+  background: linear-gradient(180deg, #ffffff, #f3f7f6);
+  box-shadow: 0 4px 10px rgba(0,0,0,.06), inset 0 1px 0 rgba(255,255,255,.8);
+}
+
+/* línea degradada sutil inferior */
+#metodo .work-underline{
+  margin-top: 14px;
+  height: 3px;
+  width: 100%;
+  border-radius: 4px;
+  background: linear-gradient(90deg, var(--blush), var(--sky));
+  opacity: .7;
+}
+
+/* ==== Cards: Testimonios ==== */
+.testimonial-card{
+  background:#fff;
+  border:1px solid var(--sky);
+  border-radius:16px;
+  padding:16px 18px;
+  box-shadow:0 12px 24px rgba(0,0,0,.06);
+  transition:transform .18s ease, box-shadow .18s ease, border-color .18s;
+}
+.testimonial-card:hover{
+  transform:translateY(-3px);
+  border-color:rgba(120,155,156,.55);
+  box-shadow:0 16px 34px rgba(0,0,0,.10);
+}
+
+.t-head{ display:flex; align-items:center; gap:12px; }
+.t-avatar{
+  width:64px; height:64px; border-radius:50%; object-fit:cover;
+  background:#eaeaea; box-shadow:0 6px 14px rgba(0,0,0,.12); border:3px solid #fff;
+}
+.t-meta{ display:flex; flex-direction:column; }
+.t-name{ font-weight:800; line-height:1.1; }
+.t-role{ color:var(--muted); font-size:14px; }
+
+.t-stars{ display:flex; gap:4px; margin-top:4px; }
+.t-stars .star{ fill:#d7dce0; }
+.t-stars .star.on{ fill:#ffc107; } /* rating activo */
+
+.t-quote{ margin:10px 0 0; color:#404040; line-height:1.6; }
+
+.testimonial-card{
+  position:relative; overflow:hidden;
+}
+.testimonial-card::before{
+  content:""; position:absolute; left:-85px; top:-90px; width:180px; height:220px;
+  background: #042e02; opacity:.2; border-radius: 0 120px 120px 0;
+  transform: rotate(-8deg);
+}
+
 .grid-areas{ display:grid; gap:16px; } /* base = mobile 1col; se expande en desktop */
 
 .contact-grid{ display:grid; gap:16px; } /* base 1col; se expande en desktop */
@@ -304,6 +411,8 @@ img{ max-width: 100%; display: block; }
 }
 
 /* About (base = desktop layout lo ajustamos luego en MQ móvil) */
+
+
 .about-grid{
   display:grid; 
   grid-template-columns:1fr 1fr; 
@@ -317,6 +426,46 @@ img{ max-width: 100%; display: block; }
 }
 .about-text{ display:flex; grid-column:1 / 2; text-align:left; flex-direction:column; }
 .about-text p{ padding:50px; text-align:justify; line-height:1.75; font-size:24px; color:#444; }
+
+/* ===== NOSOTROS: mini-cards con subrayado y hover ===== */
+#nosotros .card{
+  border: 2px solid var(--sky);
+  border-radius: 18px;
+  background: linear-gradient(#ffffff, #fcfcfc);
+  box-shadow: 0 12px 24px rgba(0,0,0,.06);
+  transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+  position: relative;
+  padding: 18px 18px 20px;
+}
+#nosotros .card:hover{
+  transform: translateY(-3px);
+  border-color: rgba(120,155,156,.55);
+  box-shadow: 0 18px 36px rgba(0,0,0,.10);
+}
+
+/* subrayado sutil (mismos colores del sitio) */
+#nosotros .card::after{
+  content:"";
+  display:block;
+  height:3px; width:100%; border-radius:4px; margin-top:12px;
+  background: linear-gradient(90deg, var(--blush), var(--sky));
+  opacity:.75;
+}
+
+/* tipografía equilibrada */
+#nosotros .card h3{ 
+  text-align: center;
+  margin:0 0 6px; 
+  font-size:20px; 
+  line-height:1.25; 
+}
+#nosotros .card p{ 
+  text-align: center;
+  margin:0; 
+  color:#404040; 
+  font-size:16px; 
+  line-height:1.55; 
+}
 
 
 /* FAQ */
@@ -333,7 +482,7 @@ img{ max-width: 100%; display: block; }
 /* Clamp visual */
 .faq-toggle{ display:none; }
 .faq-wrap{ position:relative; max-height:560px; overflow:hidden; }
-.faq-wrap::after{ content:""; position:absolute; left:0; right:0; bottom:0; height:90px; background:linear-gradient(transparent, var(--bg)); }
+.faq-wrap::after{ content:""; position:absolute; left:0; right:0; bottom:0; height:90px; background:linear-gradient(transparent, var(--)); }
 .faq-toggle:checked ~ .faq-wrap{ max-height:none; }
 .faq-toggle:checked ~ .faq-wrap::after{ display:none; }
 .faq-toggle:checked ~ .faq-more{ display:none; }
@@ -412,6 +561,11 @@ img{ max-width: 100%; display: block; }
   /* Grids 1 columna */
   .grid-2-md, .grid-3-md, .grid-4-lg{ grid-template-columns:1fr; gap:12px; }
   .card{ padding:20px; }
+  /* Card Como trabajamos */
+  #metodo .work-card{ align-items: center; text-align: center; }
+  #metodo .work-top{ width: 100%; }
+  /* Card Testimonios */
+  .testimonial-card{ padding:14px; }
 
   /* Contacto 1 columna */
   .contact-grid{ grid-template-columns:1fr; }
@@ -498,6 +652,15 @@ img{ max-width: 100%; display: block; }
     font-size: 16px;
   }
 
+  
+  /* Como trabajamos cards */
+  #metodo .work-card{ padding: 16px 18px 14px; }
+  #metodo .work-card h3{ font-size: 19px; }
+  #metodo .work-card p{ font-size: 15px; line-height: 1.5; }
+  #metodo .work-icon{ width: 40px; height: 40px; font-size: 18px; }
+  /* Testimonios cards */
+  .testimonial-card{ padding:14px 16px; }
+  .t-avatar{ width:56px; height:56px; }
 }
 
 /* =========================================================

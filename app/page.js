@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react';
 import ContactForm from '../components/ContactForm'; // ruta relativa
 import Image from "next/image";
 import logo from "./assets/logo.png";
-import { FaBriefcase, FaBalanceScale, FaHandshake } from "react-icons/fa";
+import { FaBriefcase, FaBalanceScale, FaHandshake, FaSearch, FaClipboardList, FaGavel } from "react-icons/fa";
 
 const WAPP_NUM = process.env.NEXT_PUBLIC_WAPP_NUM || '5492604205682';
 const WAPP_TEXT = process.env.NEXT_PUBLIC_WAPP_TEXT || 'Hola%20quiero%20hacer%20una%20consulta';
@@ -221,14 +221,23 @@ export default function Home() {
           <h2 className="h2-sub">CÓMO TRABAJAMOS</h2>
           <div className="mt-6 grid grid-3-md">
             {[
-              { t: 'Análisis personalizado', d: 'Estudio profundo del caso y estrategia efectiva.' },
-              { t: 'Seguimiento claro', d: 'Información periódica para tu tranquilidad.' },
-              { t: 'Representación sólida', d: 'Negociación y litigio con foco en resultados.' },
-            ].map((x, i) => (
-              <div key={i} className="card">
-                <h3>{x.t}</h3>
-                <p className="mt-2">{x.d}</p>
-              </div>
+              { t: 'Análisis personalizado', d: 'Estudio profundo del caso y estrategia efectiva.', Icon: FaSearch },
+              { t: 'Seguimiento claro', d: 'Información periódica para tu tranquilidad.', Icon: FaClipboardList },
+              { t: 'Representación sólida', d: 'Negociación y litigio con foco en resultados.', Icon: FaGavel },
+            ].map(({ t, d, Icon }, i) => (
+              <article key={i} className="card work-card">
+                <div className="work-top">
+                  <h3>{t}</h3>
+                  <span className="work-icon" aria-hidden="true">
+                    <Icon />
+                  </span>
+                </div>
+
+                <p className="mt-2">{d}</p>
+
+                {/* línea sutil inferior */}
+                <span className="work-underline" aria-hidden="true" />
+              </article>
             ))}
           </div>
         </div>
@@ -255,20 +264,64 @@ export default function Home() {
       </section>
 
       {/* TESTIMONIOS */}
-      <section className="section">
+      <section className="section" id="testimonios">
         <div className="people">
           <h2 className="h2-sub">TESTIMONIOS</h2>
+
           <div className="mt-6 grid grid-2-md">
             {[
-              { q: '“Solución rápida y favorable, excelente trato humano.”', a: 'Eduardo R. M.' },
-              { q: '“Apoyo profesional y empático en todo momento.”', a: 'María L. G.' },
-              { q: '“Resolvieron un caso complejo con claridad.”', a: 'Laura O.' },
-              { q: '“Recuperamos lo que nos correspondía por derecho.”', a: 'Laboratorios B.' },
-            ].map((x, i) => (
-              <blockquote key={i} className="card" style={{padding:24}}>
-                <p>{x.q}</p>
-                <footer className="mt-2">{x.a}</footer>
-              </blockquote>
+              {
+                name: "Eduardo R. M.",
+                quote: "Solución rápida y favorable, excelente trato humano.",
+                img: "https://i.pravatar.cc/96?img=12",
+                rating: 5,
+              },
+              {
+                name: "María L. G.",
+                quote: "Apoyo profesional y empático en todo momento.",
+                img: "https://i.pravatar.cc/96?img=32",
+                rating: 5,
+              },
+              {
+                name: "Laura O.",
+                quote: "Resolvieron un caso complejo con claridad.",
+                img: "https://i.pravatar.cc/96?img=49",
+                rating: 4,
+              },
+              {
+                name: "Raúl B.",
+                quote: "Recuperamos lo que nos correspondía por derecho.",
+                img: "https://i.pravatar.cc/96?img=14",
+                rating: 5,
+              },
+            ].map((t, i) => (
+              <figure key={i} className="testimonial-card">
+                <div className="t-head">
+                  <img
+                    src={t.img}
+                    alt={`Foto de ${t.name}`}
+                    className="t-avatar"
+                    loading="lazy"
+                  />
+                  <div className="t-meta">
+                    <figcaption className="t-name">{t.name}</figcaption>
+                    <div className="t-role">{t.role}</div>
+                    <div className="t-stars" aria-label={`${t.rating} de 5`}>
+                      {[1,2,3,4,5].map((n)=>(
+                        <svg
+                          key={n}
+                          className={`star ${n <= t.rating ? 'on' : ''}`}
+                          viewBox="0 0 20 20" width="18" height="18" aria-hidden="true"
+                        >
+                          <path d="M10 1.5l2.6 5.3 5.8.8-4.2 4 1 5.7-5.2-2.7-5.2 2.7 1-5.7-4.2-4 5.8-.8z"/>
+                        </svg>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
+                <blockquote className="t-quote">“{t.quote}”</blockquote>
+              </figure>
             ))}
           </div>
         </div>
