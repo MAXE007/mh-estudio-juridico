@@ -149,8 +149,15 @@ export default function Home() {
       {/* MENÚ MÓVIL FULLSCREEN (mantengo WhatsApp aquí) */}
       <div className={`mobile-menu ${menuOpen ? 'open' : ''}`} role="dialog" aria-modal="true">
         <div className="mobile-top">
-          <span style={{fontWeight:600,fontSize:14}}>Menú</span>
-          <button className="burger" aria-label="Cerrar" onClick={() => setMenuOpen(false)}>✕</button>
+          <span className="mobile-title">Menú</span>
+          <button
+            className="mobile-close"
+            aria-label="Cerrar menú"
+            onClick={() => setMenuOpen(false)}
+            type="button"
+          >
+            ×
+          </button>
         </div>
         <nav className="mobile-links">
           {NAV.map((item) => (
