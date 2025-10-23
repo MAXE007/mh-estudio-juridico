@@ -465,9 +465,12 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Botón expandir (se oculta al abrir) */}
+          {/* Botones: uno para abrir, otro para volver a contraer */}
           <label htmlFor="faqExpand" className="faq-more btn btn-outline mt-3">
             Ver todas las preguntas
+          </label>
+          <label htmlFor="faqExpand" className="faq-less btn btn-outline mt-3">
+            Ver menos
           </label>
         </div>
       </section>

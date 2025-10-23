@@ -30,6 +30,10 @@ img{ max-width: 100%; display: block; }
 .container{ max-width: 1120px; margin: 0 auto; padding: 0 16px; }
 .hidden{ display: none !important; }
 
+section[id]{
+  scroll-margin-top: calc(var(--header-h) + 12px);  /* 12px de aire extra */
+}
+
 .section   { padding: 100px; }
 .section-lg{ padding: 64px; }
 
@@ -283,7 +287,7 @@ img{ max-width: 100%; display: block; }
   overflow: hidden;
   border: 2px solid var(--sky);
   border-radius: 22px;
-  padding: 20px 22px 18px;
+  padding: 30px 22px 18px;
   background: linear-gradient(180deg, #ffffff 0%, #f7faf9 100%);
   box-shadow: 0 12px 28px rgba(0,0,0,.06);
   transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
@@ -401,7 +405,7 @@ img{ max-width: 100%; display: block; }
   background: var(--sky); 
   color:var(--white); 
 }
-.footer-row{ display:flex; flex-direction:column; gap:12px; align-items:center; justify-content:space-between; padding:16px 0; }
+.footer-row{ display:flex; flex-direction:column; gap:12px; align-items:center; justify-content:center; padding:16px 0; }
 
 /* Botón flotante WA */
 .float-wa{
@@ -483,33 +487,34 @@ img{ max-width: 100%; display: block; }
 }
 
 
-/* FAQ */
-.faq-preview .faq-grid{ display:grid; gap:16px; }
-.faq-item{ padding:18px 20px; border-radius:14px; cursor:pointer; }
-.faq-item summary{
-  list-style:none; font-weight:700; font-size:18px; display:flex; align-items:center; justify-content:space-between; user-select:none;
-}
-.faq-item summary::-webkit-details-marker{ display:none; }
-.faq-item summary::after{ content:"+"; font-size:22px; line-height:1; margin-left:12px; color:var(--muted); }
-.faq-item[open] summary::after{ content:"–"; }
-.faq-item p{ color:#575757; }
+/* ===== Preguntas Frecuentes (FAQ) – refresh ===== */
 
-/* Clamp visual */
-.faq-toggle{ display:none; }
-.faq-wrap{ position:relative; max-height:560px; overflow:hidden; }
-.faq-wrap::after{ content:""; position:absolute; left:0; right:0; bottom:0; height:90px; background:linear-gradient(transparent, var(--)); }
-.faq-toggle:checked ~ .faq-wrap{ max-height:none; }
-.faq-toggle:checked ~ .faq-wrap::after{ display:none; }
-.faq-toggle:checked ~ .faq-more{ display:none; }
-/* Mostrar 4 por defecto en preview (opcional) */
-/* .faq-toggle:not(:checked) ~ .faq-wrap .faq-item:nth-child(n+5){ display:none; } */
-/* .faq-toggle:not(:checked) ~ .faq-wrap::after{ display:none; } */
+/* Ocultar el checkbox (seguirá funcionando para :checked) */
+.faq-toggle{
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+  width: 0; height: 0;
+}
+
+/* Grid en 2 columnas (auto-responsivo) */
+.faq-preview .faq-grid{
+  max-width: 1040px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(320px, 1fr));
+  gap: 12px;
+}
 
 /* =========================================================
    MOBILE-FIRST: ajustes específicos para MÓVIL (<=768)
    ========================================================= */
 @media (max-width: 768px){
   :root{ --header-h: 64px; }
+
+  .section {
+    padding-block: 50px !important;
+  }
 
   .header-row{
     display: grid;
@@ -581,7 +586,10 @@ img{ max-width: 100%; display: block; }
   .grid-2-md, .grid-3-md, .grid-4-lg{ grid-template-columns:1fr; gap:12px; }
   .card{ padding:20px; }
   /* Card Como trabajamos */
-  #metodo .work-card{ align-items: center; text-align: center; }
+  #metodo .work-card{ 
+    align-items: center; 
+    text-align: center; 
+  }
   #metodo .work-top{ width: 100%; }
   /* Card Testimonios */
   .testimonial-card{ padding:14px; }
@@ -589,8 +597,113 @@ img{ max-width: 100%; display: block; }
   /* Contacto 1 columna */
   .contact-grid{ grid-template-columns:1fr; }
 
+  /* FAQ section */
+  .faq-preview .faq-grid{ grid-template-columns: 1fr; }
+
+  /* Cards */
+  .faq-item.card{
+    padding: 0;
+    border-radius: 14px;
+    box-shadow: 0 8px 18px rgba(0,0,0,.05);
+    overflow: hidden;
+    transition: transform .12s ease, box-shadow .12s ease, border-color .12s ease;
+  }
+  .faq-item.card:hover{
+    transform: translateY(-1px);
+    box-shadow: 0 12px 24px rgba(0,0,0,.07);
+  }
+
+  /* Cabecera */
+  .faq-item summary{
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 14px 16px;
+    font-weight: 700;
+    font-size: 18px;
+    cursor: pointer;
+    user-select: none;
+  }
+  .faq-item summary::-webkit-details-marker{ display:none; }
+
+  /* Icono + / – */
+  .faq-item summary::after{
+    content: "+";
+    flex: 0 0 auto;
+    width: 26px; height: 26px;
+    border-radius: 50%;
+    display: grid; place-items: center;
+    background: var(--sky);
+    color: #fff;
+    font-size: 17px;
+    transition: transform .2s ease, background .2s ease;
+  }
+  .faq-item[open] summary::after{
+    content: "–";
+    background: color-mix(in srgb, var(--sky) 85%, white);
+  }
+
+  .faq-item[open] summary{
+    border-bottom: 1px solid color-mix(in srgb, var(--sky) 35%, white);
+  }
+
+  /* Cuerpo */
+  .faq-item > p{
+    margin: 0;
+    padding: 12px 16px 16px;
+    color: #444;
+    line-height: 1.6;
+  }
+
+  /* ==== Preview: mostrar SOLO 4 por defecto ==== */
+  .faq-toggle:not(:checked) ~ .faq-wrap .faq-item:nth-child(n+5){
+    display: none;
+  }
+
+  /* Fade inferior cuando está colapsado */
+  .faq-wrap{
+    position: relative;
+  }
+  .faq-toggle:not(:checked) ~ .faq-wrap::after{
+    content: "";
+    pointer-events: none;
+    position: absolute; left: 0; right: 0; bottom: -2px;
+    height: 48px;
+    background: linear-gradient(transparent, #fff);
+    border-radius: 0 0 12px 12px;
+  }
+
+  /* Botones Ver todas / Ver menos */
+  .faq-more.btn, .faq-less.btn{
+    display: inline-flex;
+    margin-top: 14px;
+    padding: 10px 14px;
+    font-size: 14px;
+  }
+
+  /* Mostrar SOLO uno de los dos botones */
+  .faq-less{ display:none !important; }
+
+  /* Cuando NO está expandido: solo "Ver todas" */
+  .faq-toggle:not(:checked) ~ .faq-more{ display:inline-flex !important; }
+  .faq-toggle:not(:checked) ~ .faq-less{  display:none !important; }
+
+  /* Cuando está expandido: solo "Ver menos" */
+  .faq-toggle:checked ~ .faq-more{ display:none !important; }
+  .faq-toggle:checked ~ .faq-less{  display:inline-flex !important; }
+
+  /* Menos aire vertical en la sección */
+  #faq.section{ padding-block: 56px; }
+
   /* Footer stack */
-  .footer-row{ flex-direction:column; }
+  .footer{
+    font-size: 7px;
+  }
+  .footer-row{ 
+    flex-direction:column; 
+  }
 
   /* Reveal (animaciones suaves) */
   .reveal{
@@ -644,6 +757,8 @@ img{ max-width: 100%; display: block; }
    NOTEBOOK FINO (901–1280)
    ========================================================= */
 @media (min-width: 901px) and (max-width: 1280px){
+  .section   { padding: 90px 100px; }
+
   .hero-title{ font-size:130px; }
 
   .about-grid{
@@ -673,10 +788,16 @@ img{ max-width: 100%; display: block; }
 
   
   /* Como trabajamos cards */
-  #metodo .work-card{ padding: 16px 18px 14px; }
+  #metodo .work-card{ 
+    padding: 25px 18px 14px; 
+  }
   #metodo .work-card h3{ font-size: 19px; }
   #metodo .work-card p{ font-size: 15px; line-height: 1.5; }
   #metodo .work-icon{ width: 40px; height: 40px; font-size: 18px; }
+  /* Areas cards */
+  #servicios .area-card{
+    padding: 10px;
+  }
   /* Testimonios cards */
   .testimonial-card{ padding:14px 16px; }
   .t-avatar{ width:56px; height:56px; }
