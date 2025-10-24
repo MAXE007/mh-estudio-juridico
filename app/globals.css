@@ -412,7 +412,7 @@ section[id]{
 }
 .testimonial-card:hover{
   transform:translateY(-3px);
-  border-color:rgba(120,155,156,.55);
+  border-color:rgba(34, 157, 161, 0.55);
   box-shadow:0 16px 34px rgba(0,0,0,.10);
 }
 
@@ -436,7 +436,7 @@ section[id]{
 }
 .testimonial-card::before{
   content:""; position:absolute; left:-85px; top:-90px; width:180px; height:220px;
-  background: #042e02; opacity:.2; border-radius: 0 120px 120px 0;
+  background: var(--sky); opacity:.4; border-radius: 0 120px 120px 0;
   transform: rotate(-8deg);
 }
 
