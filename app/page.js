@@ -486,7 +486,17 @@ export default function Home() {
       {/* FOOTER */}
       <footer className="footer">
         <div className="container footer-row">
-          <p>© {new Date().getFullYear()} MH ESTUDIO JURÍDICO Y ASOCIADOS. Todos los derechos reservados.</p>
+          <p className="footer-main">© {new Date().getFullYear()} MH ESTUDIO JURÍDICO Y ASOCIADOS. Todos los derechos reservados.</p>
+
+          <a
+            href="https://maximilianoechegaray.netlify.app/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="footer-author"
+          >
+            Created by Maxi Echegaray
+          </a>
+          
         </div>
       </footer>
 
